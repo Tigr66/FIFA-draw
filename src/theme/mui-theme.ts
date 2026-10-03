@@ -15,6 +15,32 @@ export const theme = createTheme({
         },
     },
     components: {
+        MuiCssBaseline: {
+            styleOverrides: {
+                html: {
+                    scrollbarWidth: "thin",
+                    scrollbarColor: "#9db3a5 #f2f5ef",
+                },
+
+                "html::-webkit-scrollbar": {
+                    width: 8,
+                },
+
+                "html::-webkit-scrollbar-track": {
+                    background: "#f2f5ef",
+                },
+
+                "html::-webkit-scrollbar-thumb": {
+                    backgroundColor: "#9db3a5",
+                    borderRadius: 8,
+                    border: "2px solid #f2f5ef",
+                },
+
+                "html::-webkit-scrollbar-thumb:hover": {
+                    backgroundColor: "#174d38",
+                },
+            },
+        },
         MuiPaper: {
             defaultProps: {
                 elevation: 0,
