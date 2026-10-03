@@ -10,6 +10,7 @@ import {
     Typography,
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
+import { PageWrapper } from "@/components/PageWrapper";
 import { appRoutes } from "@/routes/app-routes";
 import { Header } from "@/components/Header";
 import useHomePage from "./hooks/useHomePage";
@@ -26,14 +27,7 @@ const HomePage = () => {
     } = useHomePage();
 
     return (
-        <Box
-            sx={{
-                minHeight: "100svh",
-                overflowX: "hidden",
-                bgcolor: "background.default",
-                color: "text.primary",
-            }}
-        >
+        <PageWrapper>
             <Header
                 tagline="YOUR NEXT MATCH STARTS HERE"
                 action={
@@ -251,7 +245,7 @@ const HomePage = () => {
                     </Box>
                 </Box>
             </Container>
-        </Box>
+        </PageWrapper>
     );
 };
 

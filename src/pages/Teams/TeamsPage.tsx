@@ -1,6 +1,7 @@
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import { Box, Button, Container, Paper, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
+import { PageWrapper } from "@/components/PageWrapper";
 import { countries } from "@/data/countries";
 import { appRoutes } from "@/routes/app-routes";
 import { Header } from "@/components/Header";
@@ -12,35 +13,27 @@ const TeamsPage = () => {
     );
 
     return (
-        <Box
-            sx={{
-                minHeight: "100svh",
-                overflowX: "hidden",
-                bgcolor: "background.default",
-                color: "text.primary",
-            }}
-        >
+        <PageWrapper>
+            <Header
+                action={
+                    <Button
+                        component={RouterLink}
+                        to={appRoutes.HOME_PAGE}
+                        variant="outlined"
+                        size="small"
+                        startIcon={<ArrowBackRoundedIcon />}
+                        sx={{
+                            minHeight: 40,
+                            px: { xs: 1, sm: 1.5 },
+                            fontSize: { xs: 12, sm: 14 },
+                            whiteSpace: "nowrap",
+                        }}
+                    >
+                        На главную
+                    </Button>
+                }
+            />
             <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
-                <Header
-                    action={
-                        <Button
-                            component={RouterLink}
-                            to={appRoutes.HOME_PAGE}
-                            variant="outlined"
-                            size="small"
-                            startIcon={<ArrowBackRoundedIcon />}
-                            sx={{
-                                minHeight: 40,
-                                px: { xs: 1, sm: 1.5 },
-                                fontSize: { xs: 12, sm: 14 },
-                                whiteSpace: "nowrap",
-                            }}
-                        >
-                            На главную
-                        </Button>
-                    }
-                />
-
                 <Box
                     component="main"
                     sx={{ pt: { xs: 4, sm: 6 }, pb: { xs: 5, md: 8 } }}
@@ -203,7 +196,7 @@ const TeamsPage = () => {
                     </Box>
                 </Box>
             </Container>
-        </Box>
+        </PageWrapper>
     );
 };
 

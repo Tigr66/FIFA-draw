@@ -17,6 +17,7 @@ const Header = ({ action, tagline }: HeaderProps) => {
                 alignItems: "center",
                 justifyContent: "space-between",
                 borderBottom: "1px solid #dce4da",
+                mx: 4,
             }}
         >
             <Box
