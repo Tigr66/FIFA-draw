@@ -8,27 +8,27 @@ export const france: Country = {
         {
             id: "psg",
             name: "PSG",
-            logo: "",
+            logo: "/france/PSG.svg",
         },
         {
             id: "marseille",
             name: "Marseille",
-            logo: "",
+            logo: "/france/Marseille.svg",
         },
         {
             id: "monaco",
             name: "Monaco",
-            logo: "",
+            logo: "/france/AS_Monaco.svg",
         },
         {
             id: "paris-fc",
             name: "Paris FC",
-            logo: "",
+            logo: "/france/Paris_FC.svg",
         },
         {
             id: "lyon",
             name: "Lyon",
-            logo: "",
+            logo: "/france/Olympique_Lyonnais.svg",
         },
     ],
 };
