@@ -8,17 +8,17 @@ export const turkey: Country = {
         {
             id: "besiktas",
             name: "Beşiktaş",
-            logo: "",
+            logo: "/turkey/Beşiktaş.svg",
         },
         {
             id: "galatasaray",
             name: "Galatasaray",
-            logo: "",
+            logo: "/turkey/Galatasaray.svg",
         },
         {
             id: "fenerbahce",
             name: "Fenerbahçe",
-            logo: "",
+            logo: "/turkey/Fenerbahçe.svg",
         },
     ],
 };

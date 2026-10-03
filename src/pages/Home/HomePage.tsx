@@ -132,7 +132,6 @@ const HomePage = () => {
                         >
                             <TextField
                                 label="Игрок 1"
-                                placeholder="Например, Алекс"
                                 value={playerOne}
                                 onChange={(event) =>
                                     setPlayerOne(event.target.value)
@@ -147,7 +146,6 @@ const HomePage = () => {
                             />
                             <TextField
                                 label="Игрок 2"
-                                placeholder="Например, Сэм"
                                 value={playerTwo}
                                 onChange={(event) =>
                                     setPlayerTwo(event.target.value)

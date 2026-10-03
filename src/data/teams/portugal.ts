@@ -8,17 +8,17 @@ export const portugal: Country = {
         {
             id: "porto",
             name: "Porto",
-            logo: "",
+            logo: "/portugal/FC_Porto.svg",
         },
         {
             id: "sporting-cp",
             name: "Sporting CP",
-            logo: "",
+            logo: "/portugal/Sporting_CP.svg",
         },
         {
             id: "benfica",
             name: "Benfica",
-            logo: "",
+            logo: "/portugal/Benfica.svg",
         },
     ],
 };
