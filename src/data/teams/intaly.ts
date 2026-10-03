@@ -8,37 +8,37 @@ export const italy: Country = {
         {
             id: "inter",
             name: "Inter",
-            logo: "",
+            logo: "/italy/Inter.svg",
         },
         {
             id: "ac-milan",
             name: "AC Milan",
-            logo: "",
+            logo: "/italy/Milan.svg",
         },
         {
             id: "roma",
             name: "Roma",
-            logo: "",
+            logo: "/italy/Roma.svg",
         },
         {
             id: "juventus",
             name: "Juventus",
-            logo: "",
+            logo: "/italy/Juventus.svg",
         },
         {
             id: "napoli",
             name: "Napoli",
-            logo: "",
+            logo: "/italy/Napoli.svg",
         },
         {
             id: "como",
             name: "Como",
-            logo: "",
+            logo: "/italy/Como_1907.svg",
         },
         {
             id: "bergamo-calcio",
             name: "Atalanta (Bergamo Calcio)",
-            logo: "",
+            logo: "/italy/Atalanta.svg",
         },
     ],
 };
