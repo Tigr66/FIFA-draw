@@ -10,6 +10,8 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
+import { appRoutes } from "@/routes/app-routes";
 import useHomePage from "./hooks/useHomePage";
 
 const HomePage = () => {
@@ -79,16 +81,38 @@ const HomePage = () => {
                             </Box>
                         </Typography>
                     </Box>
-                    <Typography
+                    <Box
                         sx={{
-                            display: { xs: "none", sm: "block" },
-                            color: "#64766c",
-                            fontSize: 13,
-                            fontWeight: 600,
+                            display: "flex",
+                            alignItems: "center",
+                            gap: { xs: 0, lg: 3 },
                         }}
                     >
-                        YOUR NEXT MATCH STARTS HERE
-                    </Typography>
+                        <Typography
+                            sx={{
+                                display: { xs: "none", lg: "block" },
+                                color: "#64766c",
+                                fontSize: 13,
+                                fontWeight: 600,
+                            }}
+                        >
+                            YOUR NEXT MATCH STARTS HERE
+                        </Typography>
+                        <Button
+                            component={RouterLink}
+                            to={appRoutes.TEAMS_PAGE}
+                            variant="outlined"
+                            size="small"
+                            sx={{
+                                minHeight: 40,
+                                px: { xs: 1.25, sm: 2 },
+                                fontSize: { xs: 13, sm: 14 },
+                                whiteSpace: "nowrap",
+                            }}
+                        >
+                            Команды
+                        </Button>
+                    </Box>
                 </Box>
 
                 <Box
