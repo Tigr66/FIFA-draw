@@ -3,7 +3,7 @@ import type { Country } from "@/types/team";
 export const netherlands: Country = {
     id: "netherlands",
     name: "Netherlands",
-    flag: "",
+    flag: "/countries/nl.svg",
     teams: [
         {
             id: "psv",
