@@ -8,27 +8,27 @@ export const saudiArabia: Country = {
         {
             id: "al-nassr",
             name: "Al Nassr",
-            logo: "",
+            logo: "/saudi-arabia/Al_Nassr.svg",
         },
         {
             id: "al-hilal",
             name: "Al Hilal",
-            logo: "",
+            logo: "/saudi-arabia/Al_Hilal.svg",
         },
         {
             id: "al-ittihad",
             name: "Al Ittihad",
-            logo: "",
+            logo: "/saudi-arabia/Al_Ittihad.svg",
         },
         {
             id: "al-shabab",
             name: "Al Shabab",
-            logo: "",
+            logo: "/saudi-arabia/Al_Shabab.svg",
         },
         {
             id: "al-ahli",
             name: "Al Ahli",
-            logo: "",
+            logo: "/saudi-arabia/Al_Ahli.svg",
         },
     ],
 };

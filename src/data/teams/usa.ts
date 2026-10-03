@@ -8,12 +8,12 @@ export const usa: Country = {
         {
             id: "inter-miami",
             name: "Inter Miami",
-            logo: "",
+            logo: "/usa/Inter_Miami_CF.svg",
         },
         {
             id: "los-angeles-fc",
             name: "Los Angeles FC",
-            logo: "",
+            logo: "/usa/Los_Angeles_Football_Club.svg",
         },
     ],
 };
