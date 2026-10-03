@@ -1,12 +1,18 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { CssBaseline } from "@mui/material";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { appRoutes } from "@/routes/app-routes";
+import HomePage from "@/pages/Home/HomePage";
 
 const App = () => {
     return (
-        <BrowserRouter>
-            <Routes>
-                {/* <Route path={appRoutes.HOME_PAGE} element={<HomePage />} /> */}
-            </Routes>
-        </BrowserRouter>
+        <>
+            <CssBaseline />
+            <BrowserRouter>
+                <Routes>
+                    <Route path={appRoutes.HOME_PAGE} element={<HomePage />} />
+                </Routes>
+            </BrowserRouter>
+        </>
     );
 };
 
