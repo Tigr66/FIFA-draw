@@ -28,8 +28,8 @@ const HomePage = () => {
             sx={{
                 minHeight: "100svh",
                 overflowX: "hidden",
-                bgcolor: "#f2f5ef",
-                color: "#172a22",
+                bgcolor: "background.default",
+                color: "text.primary",
             }}
         >
             <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
@@ -56,7 +56,7 @@ const HomePage = () => {
                                 height: 36,
                                 display: "grid",
                                 placeItems: "center",
-                                bgcolor: "#174d38",
+                                bgcolor: "primary.main",
                                 color: "#d9f06b",
                                 borderRadius: "10px",
                             }}
@@ -115,13 +115,9 @@ const HomePage = () => {
 
                     <Paper
                         component="section"
-                        elevation={0}
                         sx={{
                             p: { xs: 2, sm: 3 },
                             mb: 3,
-                            border: "1px solid #dce5db",
-                            borderRadius: "10px",
-                            bgcolor: "#fff",
                         }}
                     >
                         <Box
@@ -175,12 +171,8 @@ const HomePage = () => {
                         }}
                     >
                         <Paper
-                            elevation={0}
                             sx={{
                                 p: { xs: 2.25, sm: 3 },
-                                border: "1px solid #dce5db",
-                                borderRadius: "10px",
-                                bgcolor: "#fff",
                             }}
                         >
                             <Box
@@ -232,32 +224,14 @@ const HomePage = () => {
                                 variant="contained"
                                 endIcon={<ArrowForwardRoundedIcon />}
                                 fullWidth
-                                sx={{
-                                    minHeight: 48,
-                                    borderRadius: "7px",
-                                    bgcolor: "#174d38",
-                                    color: "#fff",
-                                    fontWeight: 750,
-                                    textTransform: "none",
-                                    fontSize: 15,
-                                    boxShadow: "none",
-                                    "&:hover": {
-                                        bgcolor: "#103d2c",
-                                        boxShadow: "none",
-                                    },
-                                }}
                             >
                                 Создать случайный матч
                             </Button>
                         </Paper>
 
                         <Paper
-                            elevation={0}
                             sx={{
                                 p: { xs: 2.25, sm: 3 },
-                                border: "1px solid #dce5db",
-                                borderRadius: "10px",
-                                bgcolor: "#fff",
                             }}
                         >
                             <Box
@@ -309,19 +283,6 @@ const HomePage = () => {
                                 variant="outlined"
                                 endIcon={<ArrowForwardRoundedIcon />}
                                 fullWidth
-                                sx={{
-                                    minHeight: 48,
-                                    borderRadius: "7px",
-                                    borderColor: "#bfd0c3",
-                                    color: "#214b37",
-                                    fontWeight: 750,
-                                    textTransform: "none",
-                                    fontSize: 15,
-                                    "&:hover": {
-                                        borderColor: "#174d38",
-                                        bgcolor: "#f6f8f3",
-                                    },
-                                }}
                             >
                                 Создать серию
                             </Button>
