@@ -1,9 +1,9 @@
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
-import SportsSoccerRoundedIcon from "@mui/icons-material/SportsSoccerRounded";
 import { Box, Button, Container, Paper, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { countries } from "@/data/countries";
 import { appRoutes } from "@/routes/app-routes";
+import { Header } from "@/components/Header";
 
 const TeamsPage = () => {
     const teamCount = countries.reduce(
@@ -21,70 +21,25 @@ const TeamsPage = () => {
             }}
         >
             <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
-                <Box
-                    component="header"
-                    sx={{
-                        minHeight: 76,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        gap: 1,
-                        borderBottom: "1px solid #dce4da",
-                    }}
-                >
-                    <Box
-                        sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: 1.25,
-                        }}
-                    >
-                        <Box
+                <Header
+                    action={
+                        <Button
+                            component={RouterLink}
+                            to={appRoutes.HOME_PAGE}
+                            variant="outlined"
+                            size="small"
+                            startIcon={<ArrowBackRoundedIcon />}
                             sx={{
-                                width: 36,
-                                height: 36,
-                                display: "grid",
-                                flexShrink: 0,
-                                placeItems: "center",
-                                bgcolor: "primary.main",
-                                color: "#d9f06b",
-                                borderRadius: "10px",
+                                minHeight: 40,
+                                px: { xs: 1, sm: 1.5 },
+                                fontSize: { xs: 12, sm: 14 },
+                                whiteSpace: "nowrap",
                             }}
                         >
-                            <SportsSoccerRoundedIcon fontSize="small" />
-                        </Box>
-                        <Typography
-                            sx={{
-                                fontWeight: 800,
-                                fontSize: 16,
-                                letterSpacing: 0,
-                            }}
-                        >
-                            FIFA{" "}
-                            <Box
-                                component="span"
-                                sx={{ color: "#648071", fontWeight: 500 }}
-                            >
-                                DRAW
-                            </Box>
-                        </Typography>
-                    </Box>
-                    <Button
-                        component={RouterLink}
-                        to={appRoutes.HOME_PAGE}
-                        variant="outlined"
-                        size="small"
-                        startIcon={<ArrowBackRoundedIcon />}
-                        sx={{
-                            minHeight: 40,
-                            px: { xs: 1, sm: 1.5 },
-                            fontSize: { xs: 12, sm: 14 },
-                            whiteSpace: "nowrap",
-                        }}
-                    >
-                        На главную
-                    </Button>
-                </Box>
+                            На главную
+                        </Button>
+                    }
+                />
 
                 <Box
                     component="main"

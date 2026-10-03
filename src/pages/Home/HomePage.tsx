@@ -1,7 +1,6 @@
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import CasinoRoundedIcon from "@mui/icons-material/CasinoRounded";
 import EmojiEventsRoundedIcon from "@mui/icons-material/EmojiEventsRounded";
-import SportsSoccerRoundedIcon from "@mui/icons-material/SportsSoccerRounded";
 import {
     Box,
     Button,
@@ -12,6 +11,7 @@ import {
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { appRoutes } from "@/routes/app-routes";
+import { Header } from "@/components/Header";
 import useHomePage from "./hooks/useHomePage";
 
 const HomePage = () => {
@@ -34,87 +34,26 @@ const HomePage = () => {
                 color: "text.primary",
             }}
         >
+            <Header
+                tagline="YOUR NEXT MATCH STARTS HERE"
+                action={
+                    <Button
+                        component={RouterLink}
+                        to={appRoutes.TEAMS_PAGE}
+                        variant="outlined"
+                        size="small"
+                        sx={{
+                            minHeight: 40,
+                            px: { xs: 1.25, sm: 2 },
+                            fontSize: { xs: 13, sm: 14 },
+                            whiteSpace: "nowrap",
+                        }}
+                    >
+                        Команды
+                    </Button>
+                }
+            />
             <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
-                <Box
-                    component="header"
-                    sx={{
-                        minHeight: 76,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        borderBottom: "1px solid #dce4da",
-                    }}
-                >
-                    <Box
-                        sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: 1.25,
-                        }}
-                    >
-                        <Box
-                            sx={{
-                                width: 36,
-                                height: 36,
-                                display: "grid",
-                                placeItems: "center",
-                                bgcolor: "primary.main",
-                                color: "#d9f06b",
-                                borderRadius: "10px",
-                            }}
-                        >
-                            <SportsSoccerRoundedIcon fontSize="small" />
-                        </Box>
-                        <Typography
-                            sx={{
-                                fontWeight: 800,
-                                fontSize: 16,
-                                letterSpacing: 0,
-                            }}
-                        >
-                            FIFA{" "}
-                            <Box
-                                component="span"
-                                sx={{ color: "#648071", fontWeight: 500 }}
-                            >
-                                DRAW
-                            </Box>
-                        </Typography>
-                    </Box>
-                    <Box
-                        sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: { xs: 0, lg: 3 },
-                        }}
-                    >
-                        <Typography
-                            sx={{
-                                display: { xs: "none", lg: "block" },
-                                color: "#64766c",
-                                fontSize: 13,
-                                fontWeight: 600,
-                            }}
-                        >
-                            YOUR NEXT MATCH STARTS HERE
-                        </Typography>
-                        <Button
-                            component={RouterLink}
-                            to={appRoutes.TEAMS_PAGE}
-                            variant="outlined"
-                            size="small"
-                            sx={{
-                                minHeight: 40,
-                                px: { xs: 1.25, sm: 2 },
-                                fontSize: { xs: 13, sm: 14 },
-                                whiteSpace: "nowrap",
-                            }}
-                        >
-                            Команды
-                        </Button>
-                    </Box>
-                </Box>
-
                 <Box
                     component="main"
                     sx={{ pt: { xs: 4, sm: 6, md: 8 }, pb: { xs: 5, md: 8 } }}
