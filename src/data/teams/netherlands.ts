@@ -8,17 +8,17 @@ export const netherlands: Country = {
         {
             id: "psv",
             name: "PSV",
-            logo: "",
+            logo: "/netherlands/PSV_Eindhoven.svg",
         },
         {
             id: "ajax",
             name: "Ajax",
-            logo: "",
+            logo: "/netherlands/Ajax.svg",
         },
         {
             id: "feyenoord",
             name: "Feyenoord",
-            logo: "",
+            logo: "/netherlands/Feyenoord.svg",
         },
     ],
 };

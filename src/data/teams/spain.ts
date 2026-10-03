@@ -8,42 +8,42 @@ export const spain: Country = {
         {
             id: "real-madrid",
             name: "Real Madrid",
-            logo: "",
+            logo: "/spain/Real_Madrid.svg",
         },
         {
             id: "barcelona",
             name: "Barcelona",
-            logo: "",
+            logo: "/spain/Barcelona.svg",
         },
         {
             id: "atletico-madrid",
             name: "Atletico Madrid",
-            logo: "",
+            logo: "/spain/Atletico_Madrid.svg",
         },
         {
             id: "athletic-bilbao",
             name: "Athletic Bilbao",
-            logo: "",
+            logo: "/spain/Athletic_Club_Bilbao.svg",
         },
         {
             id: "real-betis",
             name: "Real Betis",
-            logo: "",
+            logo: "/spain/Real_Betis.svg",
         },
         {
             id: "racing-santander",
             name: "Racing Santander",
-            logo: "",
+            logo: "/spain/Racing_Santander.svg",
         },
         {
             id: "real-sociedad",
             name: "Real Sociedad",
-            logo: "",
+            logo: "/spain/Real_Sociedad.svg",
         },
         {
             id: "girona",
             name: "Girona",
-            logo: "",
+            logo: "/spain/Girona.svg",
         },
     ],
 };
