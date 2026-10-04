@@ -1,20 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { countries } from "@/data/countries";
-import type { Team } from "@/types/team.types";
-import type { RoulettePhase } from "@/types/roulette.types";
+import type {
+    RoulettePhase,
+    RouletteTeam,
+    TeamPair,
+} from "@/types/roulette.types";
+import usePlayersStorage from "@/hooks/usePlayersStorage";
 
-interface RouletteTeam extends Team {
-    key: string;
-    countryName: string;
-}
-
-interface TeamPair {
-    first: RouletteTeam;
-    second: RouletteTeam;
-}
-
-const PLAYERS_STORAGE_KEY = "fifa-draw:players:";
-const SPIN_INTERVAL = 75;
+const SPIN_INTERVAL = 100;
 const STOP_STEPS = 9;
 
 const teamPool: RouletteTeam[] = countries.flatMap((country) =>
@@ -22,6 +15,7 @@ const teamPool: RouletteTeam[] = countries.flatMap((country) =>
         ...team,
         key: `${country.id}:${team.id}`,
         countryName: country.name,
+        countryFlag: country.flag,
     })),
 );
 
@@ -40,12 +34,11 @@ const getRandomPair = (): TeamPair => {
 };
 
 const useRandomMatch = () => {
-    const [playerOne] = useState(
-        () => localStorage.getItem(`${PLAYERS_STORAGE_KEY}1`) || "Игрок 1",
-    );
-    const [playerTwo] = useState(
-        () => localStorage.getItem(`${PLAYERS_STORAGE_KEY}2`) || "Игрок 2",
-    );
+    const { getPlayer } = usePlayersStorage();
+
+    const playerOne = getPlayer("1");
+    const playerTwo = getPlayer("2");
+
     const [teamPair, setTeamPair] = useState(getRandomPair);
     const [phase, setPhase] = useState<RoulettePhase>("empty");
     const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -114,7 +107,6 @@ const useRandomMatch = () => {
         playerOne,
         playerTwo,
         teamPair,
-        teamCount: teamPool.length,
         phase,
         toggleSpinning,
     };

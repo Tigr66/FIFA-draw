@@ -1,3 +1,5 @@
+import type { Team } from "./team.types";
+
 export type RoulettePhase = "empty" | "spinning" | "stopping" | "ready";
 
 export const roulettePhaseLabels: Record<RoulettePhase, string> = {
@@ -5,4 +7,15 @@ export const roulettePhaseLabels: Record<RoulettePhase, string> = {
     spinning: "ВРАЩЕНИЕ",
     stopping: "ЗАМЕДЛЕНИЕ",
     ready: "ВЫБРАНО",
+};
+
+export interface RouletteTeam extends Team {
+    key: string;
+    countryName: string;
+    countryFlag: string;
+}
+
+export type TeamPair = {
+    first: RouletteTeam;
+    second: RouletteTeam;
 };
