@@ -1,4 +1,3 @@
-import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import CasinoRoundedIcon from "@mui/icons-material/CasinoRounded";
 import EmojiEventsRoundedIcon from "@mui/icons-material/EmojiEventsRounded";
 import {
@@ -13,6 +12,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { PageWrapper } from "@/components/PageWrapper";
 import { appRoutes } from "@/routes/app-routes";
 import { Header } from "@/components/Header";
+import { GameCard } from "./components";
 import useHomePage from "./hooks/useHomePage";
 
 const HomePage = () => {
@@ -66,7 +66,7 @@ const HomePage = () => {
                             Кто выходит на поле?
                         </Typography>
                         <Typography sx={{ color: "#718077", fontSize: 14 }}>
-                            Имена сохранятся для следующего шага.
+                            Имена сохранятся для следующего шага
                         </Typography>
                     </Box>
 
@@ -101,6 +101,7 @@ const HomePage = () => {
                                 size="medium"
                                 slotProps={{ htmlInput: { maxLength: 30 } }}
                             />
+                            
                             <TextField
                                 label="Игрок 2"
                                 value={playerTwo}
@@ -125,123 +126,29 @@ const HomePage = () => {
                             gap: 2,
                         }}
                     >
-                        <Paper
-                            sx={{
-                                p: { xs: 2.25, sm: 3 },
-                            }}
-                        >
-                            <Box
-                                sx={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    gap: 1.5,
-                                    mb: 1.5,
-                                }}
-                            >
-                                <Box
-                                    sx={{
-                                        width: 40,
-                                        height: 40,
-                                        display: "grid",
-                                        placeItems: "center",
-                                        borderRadius: "9px",
-                                        bgcolor: "#eaf2e6",
-                                        color: "#286344",
-                                    }}
-                                >
-                                    <CasinoRoundedIcon />
-                                </Box>
-                                <Typography
-                                    component="h3"
-                                    sx={{
-                                        fontSize: 19,
-                                        fontWeight: 800,
-                                        letterSpacing: 0,
-                                        color: "#203b2e",
-                                    }}
-                                >
-                                    Random Match
-                                </Typography>
-                            </Box>
-                            <Typography
-                                sx={{
-                                    minHeight: { xs: 0, sm: 48 },
-                                    color: "#6b7b72",
-                                    fontSize: 14,
-                                    lineHeight: 1.6,
-                                    mb: 2.5,
-                                }}
-                            >
-                                Матч со случайными командами
-                            </Typography>
-                            <Button
-                                onClick={() => startMode("random-match")}
-                                variant="contained"
-                                endIcon={<ArrowForwardRoundedIcon />}
-                                fullWidth
-                            >
-                                Создать случайный матч
-                            </Button>
-                        </Paper>
+                        <GameCard
+                            gameIcon={
+                                <CasinoRoundedIcon sx={{ color: "#286344" }} />
+                            }
+                            gameTitle="Random Match"
+                            gameDescription="Матч со случайными командами"
+                            buttonText="Создать случайный матч"
+                            onStart={() => startMode("random-match")}
+                        />
 
-                        <Paper
-                            sx={{
-                                p: { xs: 2.25, sm: 3 },
-                            }}
-                        >
-                            <Box
-                                sx={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    gap: 1.5,
-                                    mb: 1.5,
-                                }}
-                            >
-                                <Box
-                                    sx={{
-                                        width: 40,
-                                        height: 40,
-                                        display: "grid",
-                                        placeItems: "center",
-                                        borderRadius: "9px",
-                                        bgcolor: "#f2f3df",
-                                        color: "#68731f",
-                                    }}
-                                >
-                                    <EmojiEventsRoundedIcon />
-                                </Box>
-                                <Typography
-                                    component="h3"
-                                    sx={{
-                                        fontSize: 19,
-                                        fontWeight: 800,
-                                        letterSpacing: 0,
-                                        color: "#203b2e",
-                                    }}
-                                >
-                                    Series
-                                </Typography>
-                            </Box>
-                            <Typography
-                                sx={{
-                                    minHeight: { xs: 0, sm: 48 },
-                                    color: "#6b7b72",
-                                    fontSize: 14,
-                                    lineHeight: 1.6,
-                                    mb: 2.5,
-                                }}
-                            >
-                                Создать серию встреч
-                            </Typography>
-                            <Button
-                                onClick={() => startMode("series")}
-                                variant="outlined"
-                                endIcon={<ArrowForwardRoundedIcon />}
-                                fullWidth
-                            >
-                                Создать серию
-                            </Button>
-                        </Paper>
+                        <GameCard
+                            gameIcon={
+                                <EmojiEventsRoundedIcon
+                                    sx={{ color: "#68731f" }}
+                                />
+                            }
+                            gameTitle="Series"
+                            gameDescription="Создать серию встреч"
+                            buttonText="Создать серию"
+                            iconBgColor="#f2f3df"
+                            buttonVariant="outlined"
+                            onStart={() => startMode("series")}
+                        />
                     </Box>
                 </Box>
             </Container>
