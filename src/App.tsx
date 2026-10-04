@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { appRoutes } from "@/routes/app-routes";
 import { RandomMatchPage } from "@/pages/RandomMatch";
 import { TeamsPage } from "./pages/Teams";
-import HomePage from "@/pages/Home/HomePage";
+import { HomePage } from "./pages/Home";
 
 const App = () => {
     return (

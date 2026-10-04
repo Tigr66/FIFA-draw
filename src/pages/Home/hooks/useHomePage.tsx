@@ -1,18 +1,16 @@
 import { appRoutes } from "@/routes/app-routes";
-import type { GameMode } from "@/types/game";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-const PLAYERS_STORAGE_KEY = "fifa-draw:players:";
+import type { GameMode } from "@/types/game";
+import usePlayersStorage from "@/hooks/usePlayersStorage";
 
 const useHomePage = () => {
     const navigate = useNavigate();
-    const [playerOne, setPlayerOne] = useState(
-        localStorage.getItem(PLAYERS_STORAGE_KEY + "1") || "",
-    );
-    const [playerTwo, setPlayerTwo] = useState(
-        localStorage.getItem(PLAYERS_STORAGE_KEY + "2") || "",
-    );
+
+    const { setPlayer, getPlayer } = usePlayersStorage();
+
+    const [playerOne, setPlayerOne] = useState(getPlayer("1"));
+    const [playerTwo, setPlayerTwo] = useState(getPlayer("2"));
     const [submitted, setSubmitted] = useState(false);
 
     const playerOneMissing = submitted && !playerOne.trim();
@@ -23,10 +21,11 @@ const useHomePage = () => {
 
         const firstPlayer = playerOne.trim();
         const secondPlayer = playerTwo.trim();
+        
         if (!firstPlayer || !secondPlayer) return;
 
-        localStorage.setItem(PLAYERS_STORAGE_KEY + "1", firstPlayer);
-        localStorage.setItem(PLAYERS_STORAGE_KEY + "2", secondPlayer);
+        setPlayer("1", firstPlayer);
+        setPlayer("2", secondPlayer);
 
         navigate(
             mode === "random-match"
