@@ -20,9 +20,10 @@ const TeamRoulette = ({
     hasResult,
     phase,
 }: TeamRouletteProps) => {
-    const { name, countryName, logo } = team || {
+    const { name, countryName, countryFlag, logo } = team || {
         name: null,
         countryName: null,
+        countryFlag: null,
         logo: null,
     };
 
@@ -163,15 +164,39 @@ const TeamRoulette = ({
                     >
                         {name ?? "Запустите рулетку"}
                     </Typography>
-                    <Typography
+                    <Box
                         sx={{
                             mt: 0.75,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: 0.75,
                             color: "#718077",
-                            fontSize: { xs: 12, sm: 13 },
                         }}
                     >
-                        {countryName ?? "-"}
-                    </Typography>
+                        {countryFlag && (
+                            <Box
+                                component="img"
+                                src={countryFlag}
+                                alt=""
+                                sx={{
+                                    width: 20,
+                                    height: 14,
+                                    objectFit: "cover",
+                                    borderRadius: "2px",
+                                }}
+                            />
+                        )}
+
+                        <Typography
+                            component="span"
+                            sx={{
+                                fontSize: { xs: 12, sm: 13 },
+                            }}
+                        >
+                            {countryName ?? "—"}
+                        </Typography>
+                    </Box>
                 </Box>
             </Box>
         </Paper>
