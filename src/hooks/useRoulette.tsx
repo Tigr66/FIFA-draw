@@ -22,16 +22,18 @@ const useRoulette = () => {
     const [teamPair, setTeamPair] = useState<TeamPair | null>(null);
     const [phase, setPhase] = useState<RoulettePhase>("empty");
 
-    const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-    useEffect(
-        () => () => {
-            if (timeoutRef.current !== null) {
-                clearTimeout(timeoutRef.current);
-            }
-        },
+    const [firstPlayerSelected, setFirstPlayerSelected] = useState<string[]>(
         [],
     );
+    const [secondPlayerSelected, setSecondPlayerSelected] = useState<string[]>(
+        [],
+    );
+
+    const shouldResetHistory =
+        teamPool.length - firstPlayerSelected.length <= 2 ||
+        teamPool.length - secondPlayerSelected.length <= 2;
+
+    const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const startSpinning = () => {
         setTeamPair(getRandomPair(teamPool));
@@ -50,7 +52,11 @@ const useRoulette = () => {
             clearTimeout(timeoutRef.current);
         }
 
-        const finalPair = getRandomPair(teamPool);
+        const finalPair = getRandomPair(
+            teamPool,
+            firstPlayerSelected,
+            secondPlayerSelected,
+        );
         let step = 0;
         setPhase("stopping");
 
@@ -60,6 +66,21 @@ const useRoulette = () => {
             if (step >= STOP_STEPS) {
                 setTeamPair(finalPair);
                 setPhase("ready");
+
+                if (shouldResetHistory) {
+                    setFirstPlayerSelected([]);
+                    setSecondPlayerSelected([]);
+                }
+
+                setFirstPlayerSelected((prev) => [
+                    ...prev,
+                    finalPair.first.name,
+                ]);
+                setSecondPlayerSelected((prev) => [
+                    ...prev,
+                    finalPair.second.name,
+                ]);
+
                 timeoutRef.current = null;
                 return;
             }
@@ -83,6 +104,15 @@ const useRoulette = () => {
             startSpinning();
         }
     };
+
+    useEffect(
+        () => () => {
+            if (timeoutRef.current !== null) {
+                clearTimeout(timeoutRef.current);
+            }
+        },
+        [],
+    );
 
     return {
         teamPair,

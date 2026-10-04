@@ -1,16 +1,30 @@
 import type { RouletteTeam, TeamPair } from "@/types/roulette.types";
 
-export const getRandomPair = (teamPool: RouletteTeam[]): TeamPair => {
-    const firstIndex = Math.floor(Math.random() * teamPool.length);
+export const getRandomPair = (
+    teamPool: RouletteTeam[],
+    firstExcludedTeamNames: string[] = [],
+    secondExcludedTeamNames: string[] = [],
+): TeamPair => {
+    const firstAvailableTeams = teamPool.filter(
+        (team) => !firstExcludedTeamNames.includes(team.name),
+    );
 
-    let secondIndex = Math.floor(Math.random() * (teamPool.length - 1));
+    const firstIndex = Math.floor(Math.random() * firstAvailableTeams.length);
 
-    if (secondIndex >= firstIndex) {
-        secondIndex += 1;
-    }
+    const firstTeam = firstAvailableTeams[firstIndex];
+
+    const secondAvailableTeams = teamPool.filter(
+        (team) =>
+            !secondExcludedTeamNames.includes(team.name) &&
+            team.name !== firstTeam.name,
+    );
+
+    const secondIndex = Math.floor(Math.random() * secondAvailableTeams.length);
+
+    const secondTeam = secondAvailableTeams[secondIndex];
 
     return {
-        first: teamPool[firstIndex],
-        second: teamPool[secondIndex],
+        first: firstTeam,
+        second: secondTeam,
     };
 };
