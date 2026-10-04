@@ -5,25 +5,17 @@ import useRandomMatch from "./hooks/useRandomMatch";
 import { TeamRoulette } from "@/components/TeamRoulette";
 
 const RandomMatchPage = () => {
-    const { playerOne, playerTwo, teamPair, phase, toggleSpinning } =
-        useRandomMatch();
-
-    const isRolling = phase === "spinning" || phase === "stopping";
-    const isStopping = phase === "stopping";
-    const hasResult = phase === "ready";
-
-    const rouletteSlots = [
-        { playerName: playerOne, team: teamPair.first },
-        { playerName: playerTwo, team: teamPair.second },
-    ];
-
-    const buttonLabel = isStopping
-        ? "Замедляем..."
-        : isRolling
-          ? "Остановить"
-          : hasResult
-            ? "Запустить заново"
-            : "Запустить рулетки";
+    const {
+        playerOne,
+        playerTwo,
+        phase,
+        rouletteSlots,
+        buttonLabel,
+        hasResult,
+        isRolling,
+        isStopping,
+        toggleSpinning,
+    } = useRandomMatch();
 
     return (
         <PageWrapper>
