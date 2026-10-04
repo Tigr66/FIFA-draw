@@ -47,11 +47,30 @@ const HomePage = () => {
                     </Button>
                 }
             />
+            <Box
+                component="img"
+                src="/images/fc-26-banner.jpg"
+                alt="Баннер"
+                sx={{
+                    display: { xs: "block", md: "none" },
+                    width: "100%",
+                    maxWidth: 900,
+                    height: "auto",
+                    mx: "auto",
+                }}
+            />
             <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
                 <Box
                     component="main"
                     sx={{ pt: { xs: 4, sm: 6, md: 8 }, pb: { xs: 5, md: 8 } }}
                 >
+                    <Box
+                        sx={{
+                            width: "100%",
+                            overflow: "hidden",
+                            borderRadius: 2,
+                        }}
+                    ></Box>
                     <Box sx={{ mb: 2.5 }}>
                         <Typography
                             component="h2"
@@ -101,7 +120,7 @@ const HomePage = () => {
                                 size="medium"
                                 slotProps={{ htmlInput: { maxLength: 30 } }}
                             />
-                            
+
                             <TextField
                                 label="Игрок 2"
                                 value={playerTwo}
