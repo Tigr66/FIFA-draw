@@ -7,7 +7,7 @@ import { Box, Paper, Typography } from "@mui/material";
 
 interface TeamRouletteProps {
     playerName: string;
-    team: RouletteTeam;
+    team: RouletteTeam | null;
     isRolling: boolean;
     hasResult: boolean;
     phase: RoulettePhase;
@@ -20,6 +20,12 @@ const TeamRoulette = ({
     hasResult,
     phase,
 }: TeamRouletteProps) => {
+    const { name, countryName, logo } = team || {
+        name: null,
+        countryName: null,
+        logo: null,
+    };
+
     return (
         <Paper
             component="section"
@@ -105,7 +111,6 @@ const TeamRoulette = ({
                 }}
             >
                 <Box
-                    key={team.key}
                     sx={{
                         width: "100%",
                         display: "flex",
@@ -118,8 +123,8 @@ const TeamRoulette = ({
                 >
                     <Box
                         component="img"
-                        src={team.logo}
-                        alt={`Эмблема: ${team.name}`}
+                        src={logo ?? "/images/unknown-team.png"}
+                        alt={name ? `Эмблема: ${name}` : "Эмблема команды"}
                         sx={{
                             width: {
                                 xs: 88,
@@ -156,7 +161,7 @@ const TeamRoulette = ({
                             overflowWrap: "anywhere",
                         }}
                     >
-                        {team.name}
+                        {name ?? "Запустите рулетку"}
                     </Typography>
                     <Typography
                         sx={{
@@ -165,7 +170,7 @@ const TeamRoulette = ({
                             fontSize: { xs: 12, sm: 13 },
                         }}
                     >
-                        {team.countryName}
+                        {countryName ?? "-"}
                     </Typography>
                 </Box>
             </Box>

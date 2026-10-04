@@ -20,7 +20,7 @@ const teamPool: RouletteTeam[] = countries.flatMap((country) =>
 );
 
 const useRoulette = () => {
-    const [teamPair, setTeamPair] = useState<TeamPair>(getRandomPair(teamPool));
+    const [teamPair, setTeamPair] = useState<TeamPair | null>(null);
     const [phase, setPhase] = useState<RoulettePhase>("empty");
 
     const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);

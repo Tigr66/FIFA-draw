@@ -13,8 +13,8 @@ const useRandomMatch = () => {
     const hasResult = phase === "ready";
 
     const rouletteSlots = [
-        { playerName: playerOne, team: teamPair.first },
-        { playerName: playerTwo, team: teamPair.second },
+        { playerName: playerOne, team: teamPair?.first || null },
+        { playerName: playerTwo, team: teamPair?.second || null },
     ];
 
     const buttonLabel = isStopping

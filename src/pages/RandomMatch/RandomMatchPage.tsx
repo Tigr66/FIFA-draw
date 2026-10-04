@@ -1,8 +1,8 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import { Header } from "@/components/Header";
 import { PageWrapper } from "@/components/PageWrapper";
-import useRandomMatch from "./hooks/useRandomMatch";
 import { TeamRoulette } from "@/components/TeamRoulette";
+import useRandomMatch from "./hooks/useRandomMatch";
 
 const RandomMatchPage = () => {
     const {
