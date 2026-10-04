@@ -1,9 +1,6 @@
-import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
-import { Box, Button, Container, Typography } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
+import { Box, Container, Typography } from "@mui/material";
 import { PageWrapper } from "@/components/PageWrapper";
 import { countries } from "@/data/countries";
-import { appRoutes } from "@/routes/app-routes";
 import { Header } from "@/components/Header";
 import { CountryCard } from "./components";
 
@@ -15,25 +12,7 @@ const TeamsPage = () => {
 
     return (
         <PageWrapper>
-            <Header
-                action={
-                    <Button
-                        component={RouterLink}
-                        to={appRoutes.HOME_PAGE}
-                        variant="outlined"
-                        size="small"
-                        startIcon={<ArrowBackRoundedIcon />}
-                        sx={{
-                            minHeight: 40,
-                            px: { xs: 1, sm: 1.5 },
-                            fontSize: { xs: 12, sm: 14 },
-                            whiteSpace: "nowrap",
-                        }}
-                    >
-                        На главную
-                    </Button>
-                }
-            />
+            <Header showBackButton />
             <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
                 <Box
                     component="main"

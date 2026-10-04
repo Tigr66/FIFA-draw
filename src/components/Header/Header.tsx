@@ -1,13 +1,18 @@
 import type { ReactNode } from "react";
+import { Box, Button, Typography } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import SportsSoccerRoundedIcon from "@mui/icons-material/SportsSoccerRounded";
-import { Box, Typography } from "@mui/material";
+import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
+import { appRoutes } from "@/routes/app-routes";
 
 interface HeaderProps {
-    action: ReactNode;
+    action?: ReactNode;
+    showBackButton?: boolean;
+    backTo?: string;
     tagline?: string;
 }
 
-const Header = ({ action, tagline }: HeaderProps) => {
+const Header = ({ action, showBackButton, backTo, tagline }: HeaderProps) => {
     return (
         <Box
             component="header"
@@ -75,7 +80,33 @@ const Header = ({ action, tagline }: HeaderProps) => {
                         {tagline}
                     </Typography>
                 )}
-                {action}
+                <Box
+                    sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: { xs: 0, lg: 3 },
+                    }}
+                >
+                    {action}
+
+                    {showBackButton && (
+                        <Button
+                            component={RouterLink}
+                            to={backTo ? backTo : appRoutes.HOME_PAGE}
+                            variant="outlined"
+                            size="small"
+                            startIcon={<ArrowBackRoundedIcon />}
+                            sx={{
+                                minHeight: 40,
+                                px: { xs: 1, sm: 1.5 },
+                                fontSize: { xs: 12, sm: 14 },
+                                whiteSpace: "nowrap",
+                            }}
+                        >
+                            На главную
+                        </Button>
+                    )}
+                </Box>
             </Box>
         </Box>
     );
