@@ -1,4 +1,4 @@
-import type { Country } from "@/types/team";
+import type { Country } from "@/types/team.types";
 
 export const portugal: Country = {
     id: "portugal",

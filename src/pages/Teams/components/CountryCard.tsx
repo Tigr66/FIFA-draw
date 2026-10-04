@@ -1,4 +1,4 @@
-import type { Country } from "@/types/team";
+import type { Country } from "@/types/team.types";
 import { Box, Paper, Typography } from "@mui/material";
 import CountryTeam from "./CountryTeam";
 

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { countries } from "@/data/countries";
-import type { Team } from "@/types/team";
+import type { Team } from "@/types/team.types";
+import type { RoulettePhase } from "@/types/roulette.types";
 
 interface RouletteTeam extends Team {
     key: string;
@@ -11,8 +12,6 @@ interface TeamPair {
     first: RouletteTeam;
     second: RouletteTeam;
 }
-
-type RoulettePhase = "ready" | "spinning" | "stopping" | "complete";
 
 const PLAYERS_STORAGE_KEY = "fifa-draw:players:";
 const SPIN_INTERVAL = 75;
@@ -48,7 +47,7 @@ const useRandomMatch = () => {
         () => localStorage.getItem(`${PLAYERS_STORAGE_KEY}2`) || "Игрок 2",
     );
     const [teamPair, setTeamPair] = useState(getRandomPair);
-    const [phase, setPhase] = useState<RoulettePhase>("ready");
+    const [phase, setPhase] = useState<RoulettePhase>("empty");
     const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     useEffect(
@@ -86,7 +85,7 @@ const useRandomMatch = () => {
 
             if (step >= STOP_STEPS) {
                 setTeamPair(finalPair);
-                setPhase("complete");
+                setPhase("ready");
                 timeoutRef.current = null;
                 return;
             }

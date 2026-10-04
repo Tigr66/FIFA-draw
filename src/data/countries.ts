@@ -1,4 +1,4 @@
-import type { Country } from "@/types/team";
+import type { Country } from "@/types/team.types";
 import { england } from "./teams/england";
 import { spain } from "./teams/spain";
 import { italy } from "./teams/intaly";

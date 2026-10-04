@@ -1,1 +1,0 @@
-export type GameMode = "random-match" | "series";

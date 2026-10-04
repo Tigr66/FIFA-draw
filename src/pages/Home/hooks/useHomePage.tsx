@@ -1,7 +1,7 @@
 import { appRoutes } from "@/routes/app-routes";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import type { GameMode } from "@/types/game";
+import type { GameMode } from "@/types/game.types";
 import usePlayersStorage from "@/hooks/usePlayersStorage";
 
 const useHomePage = () => {
@@ -21,7 +21,7 @@ const useHomePage = () => {
 
         const firstPlayer = playerOne.trim();
         const secondPlayer = playerTwo.trim();
-        
+
         if (!firstPlayer || !secondPlayer) return;
 
         setPlayer("1", firstPlayer);

@@ -9,7 +9,7 @@ const RandomMatchPage = () => {
 
     const isRolling = phase === "spinning" || phase === "stopping";
     const isStopping = phase === "stopping";
-    const hasResult = phase === "complete";
+    const hasResult = phase === "ready";
 
     const rouletteSlots = [
         { playerName: playerOne, team: teamPair.first },

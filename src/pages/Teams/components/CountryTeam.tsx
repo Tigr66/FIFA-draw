@@ -1,4 +1,4 @@
-import type { Team } from "@/types/team";
+import type { Team } from "@/types/team.types";
 import { Box, Typography } from "@mui/material";
 
 interface CountryTeamProps {
