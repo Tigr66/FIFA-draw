@@ -13,7 +13,6 @@ const STOP_STEPS = 9;
 const teamPool: RouletteTeam[] = countries.flatMap((country) =>
     country.teams.map((team) => ({
         ...team,
-        key: `${country.id}:${team.id}`,
         countryName: country.name,
         countryFlag: country.flag,
     })),

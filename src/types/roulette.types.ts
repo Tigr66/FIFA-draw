@@ -10,7 +10,6 @@ export const roulettePhaseLabels: Record<RoulettePhase, string> = {
 };
 
 export interface RouletteTeam extends Team {
-    key: string;
     countryName: string;
     countryFlag: string;
 }
