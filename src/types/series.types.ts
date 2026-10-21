@@ -3,7 +3,7 @@ export type MatchStatus = "not-started" | "ended";
 export type SeriesStatus = "in-progress" | "ended";
 
 export type MatchPlayer = {
-    team: string;
+    teamId: string;
     score: number;
 };
 
