@@ -14,6 +14,11 @@ export interface RouletteTeam extends Team {
     countryFlag: string;
 }
 
+export type RoulleteSlot = {
+    playerName: string;
+    team: RouletteTeam | null;
+};
+
 export type TeamPair = {
     first: RouletteTeam;
     second: RouletteTeam;

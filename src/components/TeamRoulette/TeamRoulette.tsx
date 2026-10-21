@@ -6,7 +6,7 @@ import {
 import { Box, Paper, Typography } from "@mui/material";
 
 interface TeamRouletteProps {
-    playerName: string;
+    playerName?: string;
     team: RouletteTeam | null;
     isRolling: boolean;
     hasResult: boolean;
@@ -50,18 +50,20 @@ const TeamRoulette = ({
                     mb: { xs: 1.5, sm: 2 },
                 }}
             >
-                <Typography
-                    component="h2"
-                    sx={{
-                        minWidth: 0,
-                        fontSize: { xs: 17, sm: 20 },
-                        fontWeight: 800,
-                        color: "#203b2e",
-                        overflowWrap: "anywhere",
-                    }}
-                >
-                    {playerName}
-                </Typography>
+                {playerName ?? (
+                    <Typography
+                        component="h2"
+                        sx={{
+                            minWidth: 0,
+                            fontSize: { xs: 17, sm: 20 },
+                            fontWeight: 800,
+                            color: "#203b2e",
+                            overflowWrap: "anywhere",
+                        }}
+                    >
+                        {playerName}
+                    </Typography>
+                )}
                 <Typography
                     aria-live="polite"
                     sx={{

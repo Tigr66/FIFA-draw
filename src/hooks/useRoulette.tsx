@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from "react";
 const SPIN_INTERVAL = 100;
 const SPIN_STOP_STEPS = 9;
 
-const AUTO_SPIN_ITERATIONS = 50;
+const AUTO_SPIN_ITERATIONS = 30;
 const AUTO_SPIN_DELAY = SPIN_INTERVAL * AUTO_SPIN_ITERATIONS;
 
 const teamPool: RouletteTeam[] = countries.flatMap((country) =>
