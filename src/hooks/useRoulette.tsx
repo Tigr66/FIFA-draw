@@ -134,11 +134,18 @@ const useRoulette = () => {
         };
     }, []);
 
+    const isRolling = phase === "spinning" || phase === "stopping";
+    const isStopping = phase === "stopping";
+    const hasResult = phase === "ready";
+
     return {
         teamPair,
         phase,
         toggleSpinning,
         autoSpining,
+        isRolling,
+        isStopping,
+        hasResult,
     };
 };
 
