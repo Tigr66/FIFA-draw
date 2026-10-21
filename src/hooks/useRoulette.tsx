@@ -8,7 +8,10 @@ import { getRandomPair } from "@/utils/get-random-pair.util";
 import { useEffect, useRef, useState } from "react";
 
 const SPIN_INTERVAL = 100;
-const STOP_STEPS = 9;
+const SPIN_STOP_STEPS = 9;
+
+const AUTO_SPIN_ITERATIONS = 50;
+const AUTO_SPIN_DELAY = SPIN_INTERVAL * AUTO_SPIN_ITERATIONS;
 
 const teamPool: RouletteTeam[] = countries.flatMap((country) =>
     country.teams.map((team) => ({
@@ -33,7 +36,10 @@ const useRoulette = () => {
         teamPool.length - firstPlayerSelected.length <= 2 ||
         teamPool.length - secondPlayerSelected.length <= 2;
 
-    const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const spinTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const autoSpinTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
+        null,
+    );
 
     const startSpinning = () => {
         setTeamPair(getRandomPair(teamPool));
@@ -41,15 +47,15 @@ const useRoulette = () => {
 
         const updateTeams = () => {
             setTeamPair(getRandomPair(teamPool));
-            timeoutRef.current = setTimeout(updateTeams, SPIN_INTERVAL);
+            spinTimeoutRef.current = setTimeout(updateTeams, SPIN_INTERVAL);
         };
 
-        timeoutRef.current = setTimeout(updateTeams, SPIN_INTERVAL);
+        spinTimeoutRef.current = setTimeout(updateTeams, SPIN_INTERVAL);
     };
 
     const stopSpinning = () => {
-        if (timeoutRef.current !== null) {
-            clearTimeout(timeoutRef.current);
+        if (spinTimeoutRef.current !== null) {
+            clearTimeout(spinTimeoutRef.current);
         }
 
         const finalPair = getRandomPair(
@@ -57,13 +63,14 @@ const useRoulette = () => {
             firstPlayerSelected,
             secondPlayerSelected,
         );
+
         let step = 0;
         setPhase("stopping");
 
         const slowDown = () => {
             step += 1;
 
-            if (step >= STOP_STEPS) {
+            if (step >= SPIN_STOP_STEPS) {
                 setTeamPair(finalPair);
                 setPhase("ready");
 
@@ -81,14 +88,19 @@ const useRoulette = () => {
                     finalPair.second.name,
                 ]);
 
-                timeoutRef.current = null;
+                spinTimeoutRef.current = null;
                 return;
             }
 
             setTeamPair(getRandomPair(teamPool));
-            const progress = step / STOP_STEPS;
-            const delay = SPIN_INTERVAL + Math.round(390 * progress ** 2);
-            timeoutRef.current = setTimeout(slowDown, delay);
+            const progress = step / SPIN_STOP_STEPS;
+
+            const maxExtraDelay = 390;
+            const slowdown = progress ** 2;
+
+            const delay = SPIN_INTERVAL + Math.round(maxExtraDelay * slowdown);
+
+            spinTimeoutRef.current = setTimeout(slowDown, delay);
         };
 
         slowDown();
@@ -105,19 +117,28 @@ const useRoulette = () => {
         }
     };
 
-    useEffect(
-        () => () => {
-            if (timeoutRef.current !== null) {
-                clearTimeout(timeoutRef.current);
+    const autoSpining = () => {
+        startSpinning();
+
+        autoSpinTimeoutRef.current = setTimeout(stopSpinning, AUTO_SPIN_DELAY);
+    };
+
+    useEffect(() => {
+        return () => {
+            if (spinTimeoutRef.current !== null) {
+                clearTimeout(spinTimeoutRef.current);
             }
-        },
-        [],
-    );
+            if (autoSpinTimeoutRef.current !== null) {
+                clearTimeout(autoSpinTimeoutRef.current);
+            }
+        };
+    }, []);
 
     return {
         teamPair,
         phase,
         toggleSpinning,
+        autoSpining,
     };
 };
 
