@@ -7,6 +7,8 @@ import { TeamsPage } from "@/pages/Teams";
 import { HomePage } from "@/pages/Home";
 import { SeriesPage } from "@/pages/Series";
 
+import "./styles/global.css";
+
 const App = () => {
     return (
         <>
