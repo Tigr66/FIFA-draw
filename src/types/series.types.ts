@@ -10,7 +10,6 @@ export type MatchPlayer = {
 export type SeriesMatch = {
     playerOne: MatchPlayer;
     playerTwo: MatchPlayer;
-    status: MatchStatus;
 };
 
 export type Series = {
