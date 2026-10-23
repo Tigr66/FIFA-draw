@@ -36,7 +36,7 @@ const SeriesPage = () => {
                     pb: { xs: 3, sm: 4, md: 5 },
                 }}
             >
-                <Stack >
+                <Stack>
                     {series?.matches.map((match) => (
                         <MatchResult
                             playerOne={match.playerOne}
@@ -47,6 +47,7 @@ const SeriesPage = () => {
                     {showNewMatch && (
                         <>
                             <Box
+                                className="slide-up"
                                 sx={{
                                     display: "grid",
                                     gridTemplateColumns: {
@@ -91,6 +92,7 @@ const SeriesPage = () => {
 
                             {hasResult && (
                                 <Box
+                                    className="slide-up"
                                     sx={{
                                         display: "grid",
                                         gridTemplateColumns: {

@@ -123,6 +123,11 @@ const useRoulette = () => {
         autoSpinTimeoutRef.current = setTimeout(stopSpinning, AUTO_SPIN_DELAY);
     };
 
+    const resetTeams = () => {
+        setPhase("empty");
+        setTeamPair(null);
+    };
+
     useEffect(() => {
         return () => {
             if (spinTimeoutRef.current !== null) {
@@ -143,6 +148,7 @@ const useRoulette = () => {
         phase,
         toggleSpinning,
         autoSpining,
+        resetTeams,
         isRolling,
         isStopping,
         hasResult,

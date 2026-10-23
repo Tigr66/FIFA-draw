@@ -8,8 +8,15 @@ const useSeries = () => {
     const { getSeries, createSeries, addMatchToSeries, updateSeriesStatus } =
         useSeriesStorage();
 
-    const { autoSpining, phase, teamPair, isRolling, isStopping, hasResult } =
-        useRoulette();
+    const {
+        autoSpining,
+        resetTeams,
+        phase,
+        teamPair,
+        isRolling,
+        isStopping,
+        hasResult,
+    } = useRoulette();
 
     const { getPlayer, setPlayer } = usePlayersStorage();
 
@@ -33,6 +40,9 @@ const useSeries = () => {
             });
             setSeries(getSeries());
             setIsNewMatch(false);
+            resetTeams();
+            setPlayerOneGoals(0);
+            setPlayerTwoGoals(0);
         }
     };
 
