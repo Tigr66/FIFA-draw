@@ -23,6 +23,8 @@ const SeriesPage = () => {
         setPlayerTwoGoals,
         saveResult,
         addNewMatch,
+        newMatchRef,
+        saveResultRef,
     } = useSeries();
 
     return (
@@ -37,8 +39,9 @@ const SeriesPage = () => {
                 }}
             >
                 <Stack>
-                    {series?.matches.map((match) => (
+                    {series?.matches.map((match, index) => (
                         <MatchResult
+                            key={`${index}-${match.playerOne.teamId}-${match.playerTwo.teamId}`}
                             playerOne={match.playerOne}
                             playerTwo={match.playerTwo}
                         />
@@ -47,6 +50,7 @@ const SeriesPage = () => {
                     {showNewMatch && (
                         <>
                             <Box
+                                ref={newMatchRef}
                                 className="slide-up"
                                 sx={{
                                     display: "grid",
@@ -93,6 +97,7 @@ const SeriesPage = () => {
                             {hasResult && (
                                 <Box
                                     className="slide-up"
+                                    ref={saveResultRef}
                                     sx={{
                                         display: "grid",
                                         gridTemplateColumns: {
