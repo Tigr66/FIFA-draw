@@ -17,8 +17,9 @@ const MatchResult = ({ playerOne, playerTwo }: MatchResultProps) => {
 
     return (
         <Paper
+            className="slide-up"
             sx={{
-                p: { xs: 2.25, sm: 3 },
+                p: { xs: 2.25, sm: 3, width: "90%", maxWidth: "1440px" },
             }}
         >
             <Box
