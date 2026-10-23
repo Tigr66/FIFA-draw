@@ -2,9 +2,10 @@ import { Header } from "@/components/Header";
 import { PageWrapper } from "@/components/PageWrapper";
 import { Box, Button } from "@mui/material";
 import { TeamRoulette } from "@/components/TeamRoulette";
-import useSeries from "./hooks/useSeries";
 import { NumberSpinner } from "@/components/NumberSpinner";
 import { MatchResult } from "./components";
+import useSeries from "./hooks/useSeries";
+import { Add, Flag } from "@mui/icons-material";
 
 const SeriesPage = () => {
     const {
@@ -26,14 +27,22 @@ const SeriesPage = () => {
     return (
         <PageWrapper>
             <Header showBackButton />
-            <Box component="main" sx={{ pt: 2 }}>
+            <Box
+                component="main"
+                className="slide-up"
+                sx={{
+                    pt: { xs: 2, sm: 3, md: 4 },
+                    px: { xs: 2, sm: 3, md: 4, lg: 5 },
+                    pb: { xs: 3, sm: 4, md: 5 },
+                }}
+            >
                 {series?.matches.map((match) => (
                     <MatchResult
                         playerOne={match.playerOne}
                         playerTwo={match.playerTwo}
                     />
                 ))}
-                
+
                 {showNewMatch && (
                     <>
                         <Box
@@ -110,7 +119,17 @@ const SeriesPage = () => {
                                     max={100}
                                 />
 
-                                <Box sx={{ maxWidth: 440, mx: "auto" }}>
+                                <Box
+                                    sx={{
+                                        maxWidth: 440,
+                                        mx: "auto",
+                                        gridColumn: {
+                                            xs: "auto",
+                                            sm: "1 / -1",
+                                        },
+                                        width: "100%",
+                                    }}
+                                >
                                     <Button
                                         onClick={saveResult}
                                         variant="contained"
@@ -126,6 +145,42 @@ const SeriesPage = () => {
                             </Box>
                         )}
                     </>
+                )}
+                {!showNewMatch && (
+                    <Box
+                        className="slide-up"
+                        sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                            gap: { xs: 1.5, sm: 2 },
+                            mt: { xs: 3, sm: 4 },
+                            flexWrap: "wrap",
+                        }}
+                    >
+                        <Button
+                            variant="outlined"
+                            startIcon={<Add />}
+                            sx={{
+                                minHeight: { xs: 44, sm: 48 },
+                                px: { xs: 2, sm: 3 },
+                                borderRadius: 2,
+                            }}
+                        >
+                            Новый матч
+                        </Button>
+
+                        <Button
+                            variant="contained"
+                            startIcon={<Flag />}
+                            sx={{
+                                minHeight: { xs: 44, sm: 48 },
+                                px: { xs: 2, sm: 3 },
+                                borderRadius: 2,
+                            }}
+                        >
+                            Завершить серию
+                        </Button>
+                    </Box>
                 )}
             </Box>
         </PageWrapper>
