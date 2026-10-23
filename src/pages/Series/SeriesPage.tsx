@@ -1,6 +1,6 @@
 import { Header } from "@/components/Header";
 import { PageWrapper } from "@/components/PageWrapper";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
 import { TeamRoulette } from "@/components/TeamRoulette";
 import { NumberSpinner } from "@/components/NumberSpinner";
 import { MatchResult } from "./components";
@@ -22,6 +22,7 @@ const SeriesPage = () => {
         setPlayerOneGoals,
         setPlayerTwoGoals,
         saveResult,
+        addNewMatch,
     } = useSeries();
 
     return (
@@ -29,123 +30,125 @@ const SeriesPage = () => {
             <Header showBackButton />
             <Box
                 component="main"
-                className="slide-up"
                 sx={{
                     pt: { xs: 2, sm: 3, md: 4 },
                     px: { xs: 2, sm: 3, md: 4, lg: 5 },
                     pb: { xs: 3, sm: 4, md: 5 },
                 }}
             >
-                {series?.matches.map((match) => (
-                    <MatchResult
-                        playerOne={match.playerOne}
-                        playerTwo={match.playerTwo}
-                    />
-                ))}
+                <Stack >
+                    {series?.matches.map((match) => (
+                        <MatchResult
+                            playerOne={match.playerOne}
+                            playerTwo={match.playerTwo}
+                        />
+                    ))}
 
-                {showNewMatch && (
-                    <>
-                        <Box
-                            sx={{
-                                display: "grid",
-                                gridTemplateColumns: {
-                                    xs: "minmax(0, 1fr)",
-                                    md: "repeat(2, minmax(0, 1fr))",
-                                },
-                                gap: { xs: 2, sm: 2.5, md: 3 },
-                                mb: { xs: 2.5, sm: 3 },
-                            }}
-                        >
-                            <TeamRoulette
-                                team={teamPair?.first || null}
-                                hasResult={hasResult}
-                                isRolling={isRolling}
-                                phase={phase}
-                            />
-
-                            <TeamRoulette
-                                team={teamPair?.second || null}
-                                hasResult={hasResult}
-                                isRolling={isRolling}
-                                phase={phase}
-                            />
-                        </Box>
-
-                        {!hasResult && (
-                            <Box sx={{ maxWidth: 440, mx: "auto" }}>
-                                <Button
-                                    onClick={autoSpining}
-                                    variant="contained"
-                                    fullWidth
-                                    disabled={phase !== "empty"}
-                                    sx={{
-                                        minHeight: { xs: 52, sm: 56 },
-                                        fontSize: { xs: 15, sm: 16 },
-                                    }}
-                                >
-                                    {buttonLabel}
-                                </Button>
-                            </Box>
-                        )}
-
-                        {hasResult && (
+                    {showNewMatch && (
+                        <>
                             <Box
                                 sx={{
                                     display: "grid",
                                     gridTemplateColumns: {
-                                        xs: "1fr",
-                                        sm: "1fr 1fr",
+                                        xs: "minmax(0, 1fr)",
+                                        md: "repeat(2, minmax(0, 1fr))",
                                     },
-                                    gap: 2,
+                                    gap: { xs: 2, sm: 2.5, md: 3 },
+                                    mb: { xs: 2.5, sm: 3 },
                                 }}
                             >
-                                <NumberSpinner
-                                    label={`Голы игрока ${series?.playerOne}`}
-                                    value={playerOneGoals}
-                                    onValueChange={(value) =>
-                                        setPlayerOneGoals(value ?? 0)
-                                    }
-                                    min={0}
-                                    max={100}
+                                <TeamRoulette
+                                    team={teamPair?.first || null}
+                                    hasResult={hasResult}
+                                    isRolling={isRolling}
+                                    phase={phase}
                                 />
 
-                                <NumberSpinner
-                                    label={`Голы игрока ${series?.playerTwo}`}
-                                    value={playerTwoGoals}
-                                    onValueChange={(value) =>
-                                        setPlayerTwoGoals(value ?? 0)
-                                    }
-                                    min={0}
-                                    max={100}
+                                <TeamRoulette
+                                    team={teamPair?.second || null}
+                                    hasResult={hasResult}
+                                    isRolling={isRolling}
+                                    phase={phase}
                                 />
+                            </Box>
 
-                                <Box
-                                    sx={{
-                                        maxWidth: 440,
-                                        mx: "auto",
-                                        gridColumn: {
-                                            xs: "auto",
-                                            sm: "1 / -1",
-                                        },
-                                        width: "100%",
-                                    }}
-                                >
+                            {!hasResult && (
+                                <Box sx={{ maxWidth: 440, mx: "auto" }}>
                                     <Button
-                                        onClick={saveResult}
+                                        onClick={autoSpining}
                                         variant="contained"
                                         fullWidth
+                                        disabled={phase !== "empty"}
                                         sx={{
                                             minHeight: { xs: 52, sm: 56 },
                                             fontSize: { xs: 15, sm: 16 },
                                         }}
                                     >
-                                        Сохранить результат
+                                        {buttonLabel}
                                     </Button>
                                 </Box>
-                            </Box>
-                        )}
-                    </>
-                )}
+                            )}
+
+                            {hasResult && (
+                                <Box
+                                    sx={{
+                                        display: "grid",
+                                        gridTemplateColumns: {
+                                            xs: "1fr",
+                                            sm: "1fr 1fr",
+                                        },
+                                        gap: 2,
+                                    }}
+                                >
+                                    <NumberSpinner
+                                        label={`Голы игрока ${series?.playerOne}`}
+                                        value={playerOneGoals}
+                                        onValueChange={(value) =>
+                                            setPlayerOneGoals(value ?? 0)
+                                        }
+                                        min={0}
+                                        max={100}
+                                    />
+
+                                    <NumberSpinner
+                                        label={`Голы игрока ${series?.playerTwo}`}
+                                        value={playerTwoGoals}
+                                        onValueChange={(value) =>
+                                            setPlayerTwoGoals(value ?? 0)
+                                        }
+                                        min={0}
+                                        max={100}
+                                    />
+
+                                    <Box
+                                        sx={{
+                                            maxWidth: 440,
+                                            mx: "auto",
+                                            gridColumn: {
+                                                xs: "auto",
+                                                sm: "1 / -1",
+                                            },
+                                            width: "100%",
+                                        }}
+                                    >
+                                        <Button
+                                            onClick={saveResult}
+                                            variant="contained"
+                                            fullWidth
+                                            sx={{
+                                                minHeight: { xs: 52, sm: 56 },
+                                                fontSize: { xs: 15, sm: 16 },
+                                            }}
+                                        >
+                                            Сохранить результат
+                                        </Button>
+                                    </Box>
+                                </Box>
+                            )}
+                        </>
+                    )}
+                </Stack>
+
                 {!showNewMatch && (
                     <Box
                         className="slide-up"
@@ -160,6 +163,7 @@ const SeriesPage = () => {
                         <Button
                             variant="outlined"
                             startIcon={<Add />}
+                            onClick={addNewMatch}
                             sx={{
                                 minHeight: { xs: 44, sm: 48 },
                                 px: { xs: 2, sm: 3 },
