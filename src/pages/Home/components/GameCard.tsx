@@ -26,6 +26,10 @@ const GameCard = ({
         <Paper
             sx={{
                 p: { xs: 2.25, sm: 3 },
+                display: "flex",
+                flexDirection: "column",
+                height: "100%",
+                boxSizing: "border-box",
             }}
         >
             <Box
@@ -43,7 +47,7 @@ const GameCard = ({
                         display: "grid",
                         placeItems: "center",
                         borderRadius: "9px",
-                        bgcolor: iconBgColor || "#eaf2e6",
+                        bgcolor: iconBgColor ?? "#eaf2e6",
                     }}
                 >
                     {gameIcon}
@@ -62,11 +66,11 @@ const GameCard = ({
             </Box>
             <Typography
                 sx={{
-                    minHeight: { xs: 0, sm: 48 },
                     color: "#6b7b72",
                     fontSize: 14,
                     lineHeight: 1.6,
                     mb: 2.5,
+                    flexGrow: 1,
                 }}
             >
                 {gameDescription}
