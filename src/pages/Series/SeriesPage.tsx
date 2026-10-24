@@ -1,12 +1,13 @@
 import { Header } from "@/components/Header";
 import { PageWrapper } from "@/components/PageWrapper";
-import { Box, Stack } from "@mui/material";
+import { Box, IconButton, Stack, Tooltip } from "@mui/material";
 import {
     MatchResult,
     MatchScoreForm,
     NewMatch,
     SeriesActions,
 } from "./components";
+import CloseIcon from "@mui/icons-material/Close";
 import useSeries from "./hooks/useSeries";
 
 const SeriesPage = () => {
@@ -25,6 +26,7 @@ const SeriesPage = () => {
         setPlayerTwoGoals,
         saveResult,
         addNewMatch,
+        closeNewMatch,
         newMatchRef,
         saveResultRef,
     } = useSeries();
@@ -57,7 +59,38 @@ const SeriesPage = () => {
                 </Stack>
 
                 {showNewMatch && (
-                    <Box sx={{ width: "80%", mt: 2, mx: "auto" }}>
+                    <Box
+                        sx={{
+                            width: "90%",
+                            mt: 2,
+                            mx: "auto",
+                            pt: 5,
+                            px: {
+                                xs: 0,
+                                sm: 4,
+                            },
+                            position: "relative",
+                        }}
+                    >
+                        {!hasResult && (
+                            <Tooltip
+                                placement="top"
+                                title="Отменить новый матч"
+                            >
+                                <IconButton
+                                    aria-label="Отменить новый матч"
+                                    onClick={closeNewMatch}
+                                    sx={{
+                                        position: "absolute",
+                                        top: 0,
+                                        right: 0,
+                                    }}
+                                >
+                                    <CloseIcon />
+                                </IconButton>
+                            </Tooltip>
+                        )}
+
                         <NewMatch
                             hasResult={hasResult}
                             isRolling={isRolling}

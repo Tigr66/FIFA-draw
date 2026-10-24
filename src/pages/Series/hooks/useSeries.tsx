@@ -53,6 +53,10 @@ const useSeries = () => {
         setIsNewMatch(true);
     };
 
+    const closeNewMatch = () => {
+        setIsNewMatch(false);
+    };
+
     const buttonLabel = isStopping
         ? "Останавливаем..."
         : isRolling
@@ -103,6 +107,7 @@ const useSeries = () => {
         setPlayerTwoGoals,
         saveResult,
         addNewMatch,
+        closeNewMatch,
         newMatchRef,
         saveResultRef,
     };
