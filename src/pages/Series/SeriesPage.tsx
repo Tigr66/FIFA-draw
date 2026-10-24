@@ -2,10 +2,9 @@ import { Header } from "@/components/Header";
 import { PageWrapper } from "@/components/PageWrapper";
 import { Box, Button, Stack } from "@mui/material";
 import { TeamRoulette } from "@/components/TeamRoulette";
-import { NumberSpinner } from "@/components/NumberSpinner";
-import { MatchResult } from "./components";
-import useSeries from "./hooks/useSeries";
+import { MatchResult, MatchScoreForm } from "./components";
 import { Add, Flag } from "@mui/icons-material";
+import useSeries from "./hooks/useSeries";
 
 const SeriesPage = () => {
     const {
@@ -103,62 +102,20 @@ const SeriesPage = () => {
                         )}
 
                         {hasResult && (
-                            <Box
-                                className="slide-up"
-                                ref={saveResultRef}
-                                sx={{
-                                    display: "grid",
-                                    gridTemplateColumns: {
-                                        xs: "1fr",
-                                        sm: "1fr 1fr",
-                                    },
-                                    gap: 2,
+                            <MatchScoreForm
+                                playerOne={{
+                                    name: series?.playerOne,
+                                    goals: playerOneGoals,
+                                    setScore: setPlayerOneGoals,
                                 }}
-                            >
-                                <NumberSpinner
-                                    label={`Голы игрока ${series?.playerOne}`}
-                                    value={playerOneGoals}
-                                    onValueChange={(value) =>
-                                        setPlayerOneGoals(value ?? 0)
-                                    }
-                                    min={0}
-                                    max={100}
-                                />
-
-                                <NumberSpinner
-                                    label={`Голы игрока ${series?.playerTwo}`}
-                                    value={playerTwoGoals}
-                                    onValueChange={(value) =>
-                                        setPlayerTwoGoals(value ?? 0)
-                                    }
-                                    min={0}
-                                    max={100}
-                                />
-
-                                <Box
-                                    sx={{
-                                        maxWidth: 440,
-                                        mx: "auto",
-                                        gridColumn: {
-                                            xs: "auto",
-                                            sm: "1 / -1",
-                                        },
-                                        width: "100%",
-                                    }}
-                                >
-                                    <Button
-                                        onClick={saveResult}
-                                        variant="contained"
-                                        fullWidth
-                                        sx={{
-                                            minHeight: { xs: 52, sm: 56 },
-                                            fontSize: { xs: 15, sm: 16 },
-                                        }}
-                                    >
-                                        Сохранить результат
-                                    </Button>
-                                </Box>
-                            </Box>
+                                playerTwo={{
+                                    name: series?.playerTwo,
+                                    goals: playerTwoGoals,
+                                    setScore: setPlayerTwoGoals,
+                                }}
+                                saveResultRef={saveResultRef}
+                                onSave={saveResult}
+                            />
                         )}
                     </Box>
                 )}
