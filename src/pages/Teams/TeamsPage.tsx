@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { PageWrapper } from "@/components/PageWrapper";
 import { countries } from "@/data/countries";
 import { Header } from "@/components/Header";
@@ -13,54 +13,56 @@ const TeamsPage = () => {
     return (
         <PageWrapper>
             <Header showBackButton />
-            <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
-                <Box
-                    component="main"
-                    sx={{ pt: { xs: 4, sm: 6 }, pb: { xs: 5, md: 8 } }}
-                >
-                    <Box sx={{ mb: { xs: 3, sm: 4 } }}>
-                        <Typography
-                            component="h1"
-                            sx={{
-                                fontSize: { xs: 30, sm: 38, md: 44 },
-                                lineHeight: 1.1,
-                                fontWeight: 850,
-                                letterSpacing: 0,
-                                color: "#173629",
-                                overflowWrap: "anywhere",
-                                mb: 1,
-                            }}
-                        >
-                            Доступные команды
-                        </Typography>
-                        <Typography
-                            sx={{
-                                color: "#64766c",
-                                fontSize: { xs: 14, sm: 16 },
-                            }}
-                        >
-                            {countries.length} стран · {teamCount} команд
-                        </Typography>
-                    </Box>
-
-                    <Box
+            <Box
+                component="main"
+                sx={{
+                    pt: { xs: 4, sm: 6 },
+                    pb: { xs: 5, md: 8 },
+                    px: { xs: 2, sm: 4 },
+                }}
+            >
+                <Box sx={{ mb: { xs: 3, sm: 4 } }}>
+                    <Typography
+                        component="h1"
                         sx={{
-                            display: "grid",
-                            gridTemplateColumns: {
-                                xs: "minmax(0, 1fr)",
-                                md: "repeat(2, minmax(0, 1fr))",
-                                xl: "repeat(3, minmax(0, 1fr))",
-                            },
-                            gap: { xs: 1.5, sm: 2 },
-                            alignItems: "start",
+                            fontSize: { xs: 30, sm: 38, md: 44 },
+                            lineHeight: 1.1,
+                            fontWeight: 850,
+                            letterSpacing: 0,
+                            color: "#173629",
+                            overflowWrap: "anywhere",
+                            mb: 1,
                         }}
                     >
-                        {countries.map((country) => (
-                            <CountryCard key={country.name} country={country} />
-                        ))}
-                    </Box>
+                        Доступные команды
+                    </Typography>
+                    <Typography
+                        sx={{
+                            color: "#64766c",
+                            fontSize: { xs: 14, sm: 16 },
+                        }}
+                    >
+                        {countries.length} стран · {teamCount} команд
+                    </Typography>
                 </Box>
-            </Container>
+
+                <Box
+                    sx={{
+                        display: "grid",
+                        gridTemplateColumns: {
+                            xs: "minmax(0, 1fr)",
+                            md: "repeat(2, minmax(0, 1fr))",
+                            xl: "repeat(3, minmax(0, 1fr))",
+                        },
+                        gap: { xs: 1.5, sm: 2 },
+                        alignItems: "start",
+                    }}
+                >
+                    {countries.map((country) => (
+                        <CountryCard key={country.name} country={country} />
+                    ))}
+                </Box>
+            </Box>
         </PageWrapper>
     );
 };
