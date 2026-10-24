@@ -55,6 +55,7 @@ const useSeries = () => {
 
     const closeNewMatch = () => {
         setIsNewMatch(false);
+        resetTeams();
     };
 
     useEffect(() => {

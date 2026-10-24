@@ -126,6 +126,13 @@ const useRoulette = () => {
     const resetTeams = () => {
         setPhase("empty");
         setTeamPair(null);
+
+        if (spinTimeoutRef.current !== null) {
+            clearTimeout(spinTimeoutRef.current);
+        }
+        if (autoSpinTimeoutRef.current !== null) {
+            clearTimeout(autoSpinTimeoutRef.current);
+        }
     };
 
     useEffect(() => {
