@@ -57,16 +57,6 @@ const useSeries = () => {
         setIsNewMatch(false);
     };
 
-    const buttonLabel = isStopping
-        ? "Останавливаем..."
-        : isRolling
-          ? "Вращаем..."
-          : "Запустить";
-
-    const hasMatches = (series?.matches.length ?? 0) > 0;
-
-    const showNewMatch = !hasMatches || isNewMatch;
-
     useEffect(() => {
         if (!series) {
             const newSeries = createSeries(getPlayer("1"), getPlayer("2"));
@@ -92,6 +82,18 @@ const useSeries = () => {
         }
     }, [hasResult]);
 
+    const buttonLabel = isStopping
+        ? "Останавливаем..."
+        : isRolling
+          ? "Вращаем..."
+          : "Запустить";
+
+    const hasMatches = (series?.matches.length ?? 0) > 0;
+
+    const showNewMatch = !hasMatches || isNewMatch;
+
+    const showCloseMatch = !hasResult && hasMatches;
+
     return {
         series,
         buttonLabel,
@@ -99,6 +101,7 @@ const useSeries = () => {
         phase,
         isRolling,
         showNewMatch,
+        showCloseMatch,
         teamPair,
         autoSpining,
         playerOneGoals,

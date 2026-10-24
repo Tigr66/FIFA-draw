@@ -5,6 +5,7 @@ import {
     MatchResult,
     MatchScoreForm,
     NewMatch,
+    PlayersLabel,
     SeriesActions,
 } from "./components";
 import CloseIcon from "@mui/icons-material/Close";
@@ -19,6 +20,7 @@ const SeriesPage = () => {
         autoSpining,
         teamPair,
         showNewMatch,
+        showCloseMatch,
         phase,
         playerOneGoals,
         playerTwoGoals,
@@ -42,6 +44,10 @@ const SeriesPage = () => {
                     pb: { xs: 3, sm: 4, md: 5 },
                 }}
             >
+                <PlayersLabel
+                    playerOneName={series?.playerOne}
+                    playerTwoName={series?.playerTwo}
+                />
                 <Stack
                     spacing={2}
                     sx={{
@@ -72,7 +78,7 @@ const SeriesPage = () => {
                             position: "relative",
                         }}
                     >
-                        {!hasResult && (
+                        {showCloseMatch && (
                             <Tooltip
                                 placement="top"
                                 title="Отменить новый матч"

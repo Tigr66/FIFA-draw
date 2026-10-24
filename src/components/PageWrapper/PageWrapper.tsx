@@ -10,7 +10,6 @@ const PageWrapper = ({ children }: PageWrapperProps) => {
         <Box
             sx={{
                 minHeight: "100svh",
-                overflowX: "hidden",
                 bgcolor: "background.default",
                 color: "text.primary",
             }}
