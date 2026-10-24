@@ -1,9 +1,12 @@
 import { Header } from "@/components/Header";
 import { PageWrapper } from "@/components/PageWrapper";
-import { Box, Button, Stack } from "@mui/material";
-import { TeamRoulette } from "@/components/TeamRoulette";
-import { MatchResult, MatchScoreForm, SeriesActions } from "./components";
-import { Add, Flag } from "@mui/icons-material";
+import { Box, Stack } from "@mui/material";
+import {
+    MatchResult,
+    MatchScoreForm,
+    NewMatch,
+    SeriesActions,
+} from "./components";
 import useSeries from "./hooks/useSeries";
 
 const SeriesPage = () => {
@@ -55,51 +58,15 @@ const SeriesPage = () => {
 
                 {showNewMatch && (
                     <Box sx={{ width: "80%", mt: 2, mx: "auto" }}>
-                        <Box
-                            ref={newMatchRef}
-                            className="slide-up"
-                            sx={{
-                                display: "grid",
-                                gridTemplateColumns: {
-                                    xs: "minmax(0, 1fr)",
-                                    md: "repeat(2, minmax(0, 1fr))",
-                                },
-                                gap: { xs: 2, sm: 2.5, md: 3 },
-                                mb: { xs: 2.5, sm: 3 },
-                                mx: "auto",
-                            }}
-                        >
-                            <TeamRoulette
-                                team={teamPair?.first || null}
-                                hasResult={hasResult}
-                                isRolling={isRolling}
-                                phase={phase}
-                            />
-
-                            <TeamRoulette
-                                team={teamPair?.second || null}
-                                hasResult={hasResult}
-                                isRolling={isRolling}
-                                phase={phase}
-                            />
-                        </Box>
-
-                        {!hasResult && (
-                            <Box sx={{ maxWidth: 440, mx: "auto" }}>
-                                <Button
-                                    onClick={autoSpining}
-                                    variant="contained"
-                                    fullWidth
-                                    disabled={phase !== "empty"}
-                                    sx={{
-                                        minHeight: { xs: 52, sm: 56 },
-                                        fontSize: { xs: 15, sm: 16 },
-                                    }}
-                                >
-                                    {buttonLabel}
-                                </Button>
-                            </Box>
-                        )}
+                        <NewMatch
+                            hasResult={hasResult}
+                            isRolling={isRolling}
+                            onSpin={autoSpining}
+                            phase={phase}
+                            teamPair={teamPair}
+                            newMatchRef={newMatchRef}
+                            buttonLabel={buttonLabel}
+                        />
 
                         {hasResult && (
                             <MatchScoreForm
