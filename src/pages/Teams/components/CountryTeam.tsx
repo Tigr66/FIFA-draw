@@ -9,7 +9,6 @@ const CountryTeam = ({ team }: CountryTeamProps) => {
     return (
         <Box
             component="li"
-            key={team.id}
             sx={{
                 minWidth: 0,
                 display: "flex",

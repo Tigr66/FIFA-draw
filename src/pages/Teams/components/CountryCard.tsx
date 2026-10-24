@@ -10,7 +10,6 @@ const CountryCard = ({ country }: CountryCardProps) => {
     return (
         <Paper
             component="section"
-            key={country.id}
             sx={{
                 minWidth: 0,
                 p: { xs: 1.75, sm: 2.5 },
