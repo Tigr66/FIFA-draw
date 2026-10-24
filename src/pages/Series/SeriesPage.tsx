@@ -2,7 +2,7 @@ import { Header } from "@/components/Header";
 import { PageWrapper } from "@/components/PageWrapper";
 import { Box, Button, Stack } from "@mui/material";
 import { TeamRoulette } from "@/components/TeamRoulette";
-import { MatchResult, MatchScoreForm } from "./components";
+import { MatchResult, MatchScoreForm, SeriesActions } from "./components";
 import { Add, Flag } from "@mui/icons-material";
 import useSeries from "./hooks/useSeries";
 
@@ -121,41 +121,10 @@ const SeriesPage = () => {
                 )}
 
                 {!showNewMatch && (
-                    <Stack
-                        className="slide-up"
-                        spacing={{ xs: 1.5, sm: 2 }}
-                        direction="row"
-                        sx={{
-                            justifyContent: "center",
-                            mt: { xs: 3, sm: 4 },
-                            flexWrap: "wrap",
-                        }}
-                    >
-                        <Button
-                            variant="outlined"
-                            startIcon={<Add />}
-                            onClick={addNewMatch}
-                            sx={{
-                                minHeight: { xs: 44, sm: 48 },
-                                px: { xs: 2, sm: 3 },
-                                borderRadius: 2,
-                            }}
-                        >
-                            Новый матч
-                        </Button>
-
-                        <Button
-                            variant="contained"
-                            startIcon={<Flag />}
-                            sx={{
-                                minHeight: { xs: 44, sm: 48 },
-                                px: { xs: 2, sm: 3 },
-                                borderRadius: 2,
-                            }}
-                        >
-                            Завершить серию
-                        </Button>
-                    </Stack>
+                    <SeriesActions
+                        onAddMatch={addNewMatch}
+                        onFinishSeries={() => {}}
+                    />
                 )}
             </Box>
         </PageWrapper>
