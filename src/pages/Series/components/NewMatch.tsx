@@ -1,7 +1,12 @@
 import { TeamRoulette } from "@/components/TeamRoulette";
-import type { RoulettePhase, TeamPair } from "@/types/roulette.types";
 import { Box, Button } from "@mui/material";
+import type { RoulettePhase, TeamPair } from "@/types/roulette.types";
 import type { RefObject } from "react";
+
+type PlayerNames = {
+    playerOne?: string;
+    playerTwo?: string;
+};
 
 interface NewMatchProps {
     newMatchRef: RefObject<HTMLDivElement | null>;
@@ -11,6 +16,7 @@ interface NewMatchProps {
     phase: RoulettePhase;
     onSpin: () => void;
     buttonLabel: string;
+    players: PlayerNames;
 }
 
 const NewMatch = ({
@@ -21,6 +27,7 @@ const NewMatch = ({
     phase,
     onSpin,
     buttonLabel,
+    players,
 }: NewMatchProps) => {
     return (
         <>
@@ -39,6 +46,7 @@ const NewMatch = ({
                 }}
             >
                 <TeamRoulette
+                    playerName={players.playerOne}
                     team={teamPair?.first || null}
                     hasResult={hasResult}
                     isRolling={isRolling}
@@ -46,6 +54,7 @@ const NewMatch = ({
                 />
 
                 <TeamRoulette
+                    playerName={players.playerTwo}
                     team={teamPair?.second || null}
                     hasResult={hasResult}
                     isRolling={isRolling}

@@ -105,6 +105,10 @@ const SeriesPage = () => {
                             teamPair={teamPair}
                             newMatchRef={newMatchRef}
                             buttonLabel={buttonLabel}
+                            players={{
+                                playerOne: series?.playerOne,
+                                playerTwo: series?.playerTwo,
+                            }}
                         />
 
                         {hasResult && (
