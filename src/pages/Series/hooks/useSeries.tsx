@@ -22,9 +22,13 @@ const useSeries = () => {
 
     const [isNewMatch, setIsNewMatch] = useState<boolean>(false);
 
+    const [initialSeries] = useState(() => getSeries());
+
     const [playerOneGoals, setPlayerOneGoals] = useState<number>(0);
     const [playerTwoGoals, setPlayerTwoGoals] = useState<number>(0);
-    const [series, setSeries] = useState<Series | null>(getSeries());
+    const [series, setSeries] = useState<Series | null>(initialSeries);
+    const [isExistingSeriesDialogOpen, setIsExistingSeriesDialogOpen] =
+        useState<boolean>((initialSeries?.matches.length ?? 0) > 0);
 
     const newMatchRef = useRef<HTMLDivElement | null>(null);
     const saveResultRef = useRef<HTMLDivElement | null>(null);
@@ -58,12 +62,19 @@ const useSeries = () => {
         resetTeams();
     };
 
-    useEffect(() => {
-        if (!series) {
-            const newSeries = createSeries(getPlayer("1"), getPlayer("2"));
-            setSeries(newSeries);
+    const createNewSeries = () => {
+        const newSeries = createSeries(getPlayer("1"), getPlayer("2"));
+        setSeries(newSeries);
+        setIsExistingSeriesDialogOpen(false);
+    };
+
+    const continueSeries = () => {
+        if (series) {
+            setPlayer("1", series.playerOne);
+            setPlayer("2", series.playerTwo);
         }
-    }, [series]);
+        setIsExistingSeriesDialogOpen(false);
+    };
 
     useEffect(() => {
         if (isNewMatch && newMatchRef.current) {
@@ -82,6 +93,20 @@ const useSeries = () => {
             });
         }
     }, [hasResult]);
+
+    useEffect(() => {
+        const playerOne = getPlayer("1");
+        const playerTwo = getPlayer("2");
+
+        if (
+            initialSeries?.matches.length === 0 &&
+            (initialSeries.playerOne !== playerOne ||
+                initialSeries.playerTwo !== playerTwo)
+        ) {
+            const newSeries = createSeries(getPlayer("1"), getPlayer("2"));
+            setSeries(newSeries);
+        }
+    }, []);
 
     const buttonLabel = isStopping
         ? "Останавливаем..."
@@ -103,15 +128,18 @@ const useSeries = () => {
         isRolling,
         showNewMatch,
         showCloseMatch,
+        isExistingSeriesDialogOpen,
         teamPair,
-        autoSpining,
         playerOneGoals,
         playerTwoGoals,
+        autoSpining,
         setPlayerOneGoals,
         setPlayerTwoGoals,
         saveResult,
         addNewMatch,
         closeNewMatch,
+        createNewSeries,
+        continueSeries,
         newMatchRef,
         saveResultRef,
     };

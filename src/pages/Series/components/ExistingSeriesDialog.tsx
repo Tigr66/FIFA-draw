@@ -5,9 +5,7 @@ import {
     DialogActions,
     DialogContent,
     DialogTitle,
-    Typography,
 } from "@mui/material";
-import type { ReactNode } from "react";
 
 interface ExistingSeriesDialogProps {
     open: boolean;

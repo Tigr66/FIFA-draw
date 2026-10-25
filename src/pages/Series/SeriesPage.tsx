@@ -2,6 +2,7 @@ import { Header } from "@/components/Header";
 import { PageWrapper } from "@/components/PageWrapper";
 import { Box, IconButton, Stack, Tooltip } from "@mui/material";
 import {
+    ExistingSeriesDialog,
     MatchResult,
     MatchScoreForm,
     NewMatch,
@@ -17,18 +18,21 @@ const SeriesPage = () => {
         buttonLabel,
         hasResult,
         isRolling,
-        autoSpining,
+        isExistingSeriesDialogOpen,
         teamPair,
         showNewMatch,
         showCloseMatch,
         phase,
         playerOneGoals,
         playerTwoGoals,
+        autoSpining,
         setPlayerOneGoals,
         setPlayerTwoGoals,
         saveResult,
         addNewMatch,
         closeNewMatch,
+        continueSeries,
+        createNewSeries,
         newMatchRef,
         saveResultRef,
     } = useSeries();
@@ -44,6 +48,15 @@ const SeriesPage = () => {
                     pb: { xs: 3, sm: 4, md: 5 },
                 }}
             >
+                {series && (
+                    <ExistingSeriesDialog
+                        onContinue={continueSeries}
+                        onNewSeries={createNewSeries}
+                        series={series}
+                        open={isExistingSeriesDialogOpen}
+                    />
+                )}
+
                 <PlayersLabel
                     playerOneName={series?.playerOne}
                     playerTwoName={series?.playerTwo}
