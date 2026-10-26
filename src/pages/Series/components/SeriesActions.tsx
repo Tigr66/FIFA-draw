@@ -11,11 +11,13 @@ const SeriesActions = ({ onAddMatch, onFinishSeries }: SeriesActionsProps) => {
         <Stack
             className="slide-up"
             spacing={{ xs: 1.5, sm: 2 }}
-            direction="row"
+            direction={{ xs: "column", sm: "row" }}
             sx={{
                 justifyContent: "center",
                 mt: { xs: 3, sm: 4 },
-                flexWrap: "wrap",
+                width: "90%",
+                maxWidth: 1440,
+                mx: "auto",
             }}
         >
             <Button

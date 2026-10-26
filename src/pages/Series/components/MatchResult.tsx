@@ -21,7 +21,7 @@ const MatchResult = ({ playerOne, playerTwo }: MatchResultProps) => {
             sx={{
                 p: { xs: 2.25, sm: 3 },
                 width: "90%",
-                maxWidth: "1440px",
+                maxWidth: 1440,
             }}
         >
             <Box
