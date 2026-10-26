@@ -6,6 +6,7 @@ import { RandomMatchPage } from "@/pages/RandomMatch";
 import { TeamsPage } from "@/pages/Teams";
 import { HomePage } from "@/pages/Home";
 import { SeriesPage } from "@/pages/Series";
+import { SeriesResultsPage } from "@/pages/SeriesResults";
 
 import "./styles/global.css";
 
@@ -27,6 +28,10 @@ const App = () => {
                     <Route
                         path={appRoutes.SERIES_PAGE}
                         element={<SeriesPage />}
+                    />
+                    <Route
+                        path={appRoutes.SERIES_RESULTS_PAGE}
+                        element={<SeriesResultsPage />}
                     />
                 </Routes>
             </BrowserRouter>
