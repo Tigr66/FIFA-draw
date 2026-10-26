@@ -2,9 +2,13 @@ import usePlayersStorage from "@/hooks/usePlayersStorage";
 import useRoulette from "@/hooks/useRoulette";
 import useSeriesStorage from "@/hooks/useSeriesStorage";
 import type { Series } from "@/types/series.types";
+import { appRoutes } from "@/routes/app-routes";
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const useSeries = () => {
+    const navigate = useNavigate();
+
     const { getSeries, createSeries, addMatchToSeries, updateSeriesStatus } =
         useSeriesStorage();
 
@@ -76,6 +80,10 @@ const useSeries = () => {
         setIsExistingSeriesDialogOpen(false);
     };
 
+    const goToHomePage = () => {
+        navigate(appRoutes.HOME_PAGE);
+    };
+
     useEffect(() => {
         if (isNewMatch && newMatchRef.current) {
             newMatchRef.current.scrollIntoView({
@@ -140,6 +148,7 @@ const useSeries = () => {
         closeNewMatch,
         createNewSeries,
         continueSeries,
+        goToHomePage,
         newMatchRef,
         saveResultRef,
     };

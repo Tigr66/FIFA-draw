@@ -1,10 +1,14 @@
 import type { Series } from "@/types/series.types";
+import { ArrowBackRounded } from "@mui/icons-material";
 import {
     Button,
     Dialog,
     DialogActions,
     DialogContent,
     DialogTitle,
+    IconButton,
+    Tooltip,
+    Typography,
 } from "@mui/material";
 
 interface ExistingSeriesDialogProps {
@@ -12,6 +16,7 @@ interface ExistingSeriesDialogProps {
     series: Series;
     onContinue: () => void;
     onNewSeries: () => void;
+    onBack: () => void;
 }
 
 const ExistingSeriesDialog = ({
@@ -19,6 +24,7 @@ const ExistingSeriesDialog = ({
     series,
     onContinue,
     onNewSeries,
+    onBack,
 }: ExistingSeriesDialogProps) => {
     const { playerOne, playerTwo } = series;
 
@@ -26,10 +32,39 @@ const ExistingSeriesDialog = ({
 
     return (
         <Dialog open={open}>
-            <DialogTitle>
-                {isEnded
-                    ? "Есть сохраненная серия"
-                    : "Найдена незавершённая серия"}
+            <DialogTitle
+                sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 1,
+                    pr: 3,
+                }}
+            >
+                <Tooltip title="Вернуться назад" placement="bottom">
+                    <IconButton
+                        onClick={onBack}
+                        aria-label="Назад"
+                        edge="start"
+                        size="small"
+                    >
+                        <ArrowBackRounded />
+                    </IconButton>
+                </Tooltip>
+
+                <Typography
+                    variant="h6"
+                    sx={{
+                        fontWeight: 600,
+                        fontSize: {
+                            xs: 16,
+                            sm: 20,
+                        },
+                    }}
+                >
+                    {isEnded
+                        ? "Есть сохраненная серия"
+                        : "Найдена незавершённая серия"}
+                </Typography>
             </DialogTitle>
             <DialogContent>
                 {isEnded ? (
@@ -69,7 +104,7 @@ const ExistingSeriesDialog = ({
                 <Button onClick={onNewSeries} variant="outlined">
                     Начать новую
                 </Button>
-                <Button onClick={onContinue} variant="contained" autoFocus>
+                <Button onClick={onContinue} variant="contained">
                     {isEnded ? "Посмотреть результаты" : "Продолжить серию"}
                 </Button>
             </DialogActions>

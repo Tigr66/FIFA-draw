@@ -33,6 +33,7 @@ const SeriesPage = () => {
         closeNewMatch,
         continueSeries,
         createNewSeries,
+        goToHomePage,
         newMatchRef,
         saveResultRef,
     } = useSeries();
@@ -54,6 +55,7 @@ const SeriesPage = () => {
                         onNewSeries={createNewSeries}
                         series={series}
                         open={isExistingSeriesDialogOpen}
+                        onBack={goToHomePage}
                     />
                 )}
 
