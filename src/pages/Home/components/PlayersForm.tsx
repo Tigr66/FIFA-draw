@@ -14,6 +14,7 @@ interface PlayersFormProps {
 const PlayersForm = ({ playerOne, playerTwo }: PlayersFormProps) => {
     return (
         <Paper
+            className="slide-down"
             component="section"
             sx={{
                 p: { xs: 2, sm: 3 },

@@ -57,7 +57,7 @@ const HomePage = () => {
                     component="main"
                     sx={{ pt: { xs: 4, sm: 6, md: 8 }, pb: { xs: 5, md: 8 } }}
                 >
-                    <Box sx={{ mb: 2.5 }}>
+                    <Box className="slide-down" sx={{ mb: 2.5 }}>
                         <Typography
                             component="h2"
                             sx={{
@@ -96,6 +96,7 @@ const HomePage = () => {
                         }}
                     >
                         <GameCard
+                            direction="right"
                             gameIcon={
                                 <CasinoRoundedIcon sx={{ color: "#286344" }} />
                             }
@@ -106,6 +107,7 @@ const HomePage = () => {
                         />
 
                         <GameCard
+                            direction="left"
                             gameIcon={
                                 <EmojiEventsRoundedIcon
                                     sx={{ color: "#68731f" }}

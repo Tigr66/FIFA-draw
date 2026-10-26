@@ -3,6 +3,8 @@ import type { ButtonProps } from "@mui/material";
 import type { ReactNode } from "react";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 
+type AnimationDirection = "left" | "right";
+
 interface GameCardProps {
     gameIcon: ReactNode;
     gameTitle: string;
@@ -11,6 +13,7 @@ interface GameCardProps {
     iconBgColor?: string;
     buttonVariant?: ButtonProps["variant"];
     onStart: () => void;
+    direction?: AnimationDirection;
 }
 
 const GameCard = ({
@@ -21,9 +24,11 @@ const GameCard = ({
     iconBgColor,
     buttonVariant,
     onStart,
+    direction,
 }: GameCardProps) => {
     return (
         <Paper
+            className={direction && `slide-${direction}`}
             sx={{
                 p: { xs: 2.25, sm: 3 },
                 display: "flex",
