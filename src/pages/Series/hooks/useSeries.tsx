@@ -115,9 +115,9 @@ const useSeries = () => {
         const playerTwo = getPlayer("2");
 
         if (
-            initialSeries?.matches.length === 0 &&
-            (initialSeries.playerOne !== playerOne ||
-                initialSeries.playerTwo !== playerTwo)
+            !initialSeries?.matches.length &&
+            (initialSeries?.playerOne !== playerOne ||
+                initialSeries?.playerTwo !== playerTwo)
         ) {
             const newSeries = createSeries(getPlayer("1"), getPlayer("2"));
             setSeries(newSeries);
