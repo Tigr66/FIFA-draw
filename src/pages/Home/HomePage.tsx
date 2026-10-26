@@ -7,6 +7,7 @@ import { appRoutes } from "@/routes/app-routes";
 import { Header } from "@/components/Header";
 import { GameCard, PlayersForm } from "./components";
 import useHomePage from "./hooks/useHomePage";
+import { AuthorBadge } from "@/components/AuthorBadge";
 
 const HomePage = () => {
     const {
@@ -52,7 +53,12 @@ const HomePage = () => {
                     mx: "auto",
                 }}
             />
-            <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
+            <Container
+                maxWidth="lg"
+                sx={{
+                    px: { xs: 2, sm: 3, md: 4 },
+                }}
+            >
                 <Box
                     component="main"
                     sx={{ pt: { xs: 4, sm: 6, md: 8 }, pb: { xs: 5, md: 8 } }}
@@ -123,6 +129,7 @@ const HomePage = () => {
                     </Box>
                 </Box>
             </Container>
+            <AuthorBadge />
         </PageWrapper>
     );
 };

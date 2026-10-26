@@ -12,6 +12,7 @@ const PageWrapper = ({ children }: PageWrapperProps) => {
                 minHeight: "100svh",
                 bgcolor: "background.default",
                 color: "text.primary",
+                position: "relative",
             }}
         >
             {children}
