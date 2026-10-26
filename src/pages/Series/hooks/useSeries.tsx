@@ -66,6 +66,11 @@ const useSeries = () => {
         resetTeams();
     };
 
+    const finishSeries = () => {
+        updateSeriesStatus("ended");
+        navigate(appRoutes.SERIES_RESULTS_PAGE);
+    };
+
     const createNewSeries = () => {
         const newSeries = createSeries(getPlayer("1"), getPlayer("2"));
         setSeries(newSeries);
@@ -73,9 +78,12 @@ const useSeries = () => {
     };
 
     const continueSeries = () => {
-        if (series) {
+        if (series && series.status === "in-progress") {
             setPlayer("1", series.playerOne);
             setPlayer("2", series.playerTwo);
+        }
+        if (series && series.status === "ended") {
+            navigate(appRoutes.SERIES_RESULTS_PAGE);
         }
         setIsExistingSeriesDialogOpen(false);
     };
@@ -145,6 +153,7 @@ const useSeries = () => {
         setPlayerTwoGoals,
         saveResult,
         addNewMatch,
+        finishSeries,
         closeNewMatch,
         createNewSeries,
         continueSeries,

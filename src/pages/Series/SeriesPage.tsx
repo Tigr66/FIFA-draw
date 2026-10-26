@@ -31,6 +31,7 @@ const SeriesPage = () => {
         saveResult,
         addNewMatch,
         closeNewMatch,
+        finishSeries,
         continueSeries,
         createNewSeries,
         goToHomePage,
@@ -148,7 +149,7 @@ const SeriesPage = () => {
                 {!showNewMatch && (
                     <SeriesActions
                         onAddMatch={addNewMatch}
-                        onFinishSeries={() => {}}
+                        onFinishSeries={finishSeries}
                     />
                 )}
             </Box>
