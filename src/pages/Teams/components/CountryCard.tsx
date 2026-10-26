@@ -9,6 +9,7 @@ interface CountryCardProps {
 const CountryCard = ({ country }: CountryCardProps) => {
     return (
         <Paper
+            className="slide-up"
             component="section"
             sx={{
                 minWidth: 0,
