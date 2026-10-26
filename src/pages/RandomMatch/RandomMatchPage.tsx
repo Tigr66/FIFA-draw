@@ -53,6 +53,7 @@ const RandomMatchPage = () => {
                     </Box>
 
                     <Box
+                        className="slide-up"
                         sx={{
                             display: "grid",
                             gridTemplateColumns: {
@@ -75,7 +76,10 @@ const RandomMatchPage = () => {
                         ))}
                     </Box>
 
-                    <Box sx={{ maxWidth: 440, mx: "auto" }}>
+                    <Box
+                        className="slide-up"
+                        sx={{ maxWidth: 440, mx: "auto" }}
+                    >
                         <Button
                             onClick={toggleSpinning}
                             variant="contained"
