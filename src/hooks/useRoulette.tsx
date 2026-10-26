@@ -5,6 +5,7 @@ import type {
     TeamPair,
 } from "@/types/roulette.types";
 import { getRandomPair } from "@/utils/get-random-pair.util";
+import { preloadTeamLogos } from "@/utils/preload-team-logos";
 import { useEffect, useRef, useState } from "react";
 
 const SPIN_INTERVAL = 100;
@@ -144,6 +145,10 @@ const useRoulette = () => {
                 clearTimeout(autoSpinTimeoutRef.current);
             }
         };
+    }, []);
+
+    useEffect(() => {
+        preloadTeamLogos();
     }, []);
 
     const isRolling = phase === "spinning" || phase === "stopping";
