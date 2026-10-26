@@ -50,7 +50,7 @@ const TeamRoulette = ({
                     mb: { xs: 1.5, sm: 2 },
                 }}
             >
-                {playerName ?? (
+                {playerName && (
                     <Typography
                         component="h2"
                         sx={{
@@ -128,6 +128,8 @@ const TeamRoulette = ({
                         component="img"
                         src={logo ?? "/images/unknown-team.png"}
                         alt={name ? `Эмблема: ${name}` : "Эмблема команды"}
+                        loading="eager"
+                        decoding="async"
                         sx={{
                             width: {
                                 xs: 88,
