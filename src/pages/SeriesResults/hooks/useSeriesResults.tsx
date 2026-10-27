@@ -119,6 +119,8 @@ const useSeriesResults = () => {
         calculateStatistics();
     }, []);
 
+    const hasCompletedSeries = series && series.status === "ended";
+
     const players: PlayerNames = {
         playerOne: series?.playerOne,
         playerTwo: series?.playerTwo,
@@ -133,6 +135,7 @@ const useSeriesResults = () => {
         winStatistics,
         mostScoringMatch,
         biggestWinMatch,
+        hasCompletedSeries,
     };
 };
 
