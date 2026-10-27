@@ -1,5 +1,6 @@
 import useSeriesStorage from "@/hooks/useSeriesStorage";
-import { calculateWinPercentages } from "@/types/calculate-win-percentages";
+import { calculateWinPercentages } from "@/utils/calculate-win-percentages.util";
+import type { PlayerNames } from "@/types/game.types";
 import type {
     SeriesWinStatistics,
     Series,
@@ -118,8 +119,14 @@ const useSeriesResults = () => {
         calculateStatistics();
     }, []);
 
+    const players: PlayerNames = {
+        playerOne: series?.playerOne,
+        playerTwo: series?.playerTwo,
+    };
+
     return {
         series,
+        players,
         playerOneGoals,
         playerTwoGoals,
         winPercentages,
