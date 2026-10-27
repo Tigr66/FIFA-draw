@@ -2,11 +2,7 @@ import { TeamRoulette } from "@/components/TeamRoulette";
 import { Box, Button } from "@mui/material";
 import type { RoulettePhase, TeamPair } from "@/types/roulette.types";
 import type { RefObject } from "react";
-
-type PlayerNames = {
-    playerOne?: string;
-    playerTwo?: string;
-};
+import type { PlayerNames } from "@/types/game.types";
 
 interface NewMatchProps {
     newMatchRef: RefObject<HTMLDivElement | null>;
