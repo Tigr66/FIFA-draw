@@ -18,8 +18,13 @@ export const calculateWinPercentages = (
     }
 
     return {
-        playerOneWinPercentage: (statistics.playerOneWins / totalMatches) * 100,
-        playerTwoWinPercentage: (statistics.playerTwoWins / totalMatches) * 100,
-        drawPercentage: (statistics.draws / totalMatches) * 100,
+        playerOneWinPercentage:
+            Math.round((statistics.playerOneWins / totalMatches) * 1000) / 10,
+
+        playerTwoWinPercentage:
+            Math.round((statistics.playerTwoWins / totalMatches) * 1000) / 10,
+
+        drawPercentage:
+            Math.round((statistics.draws / totalMatches) * 1000) / 10,
     };
 };
