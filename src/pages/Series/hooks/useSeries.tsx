@@ -1,13 +1,16 @@
 import usePlayersStorage from "@/hooks/usePlayersStorage";
 import useRoulette from "@/hooks/useRoulette";
 import useSeriesStorage from "@/hooks/useSeriesStorage";
-import type { Series } from "@/types/series.types";
+import type { Series, SeriesAction } from "@/types/series.types";
 import { appRoutes } from "@/routes/app-routes";
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const useSeries = () => {
+    const location = useLocation();
     const navigate = useNavigate();
+
+    const action: SeriesAction | null = location.state?.action ?? null;
 
     const { getSeries, createSeries, addMatchToSeries, updateSeriesStatus } =
         useSeriesStorage();
@@ -32,7 +35,11 @@ const useSeries = () => {
     const [playerTwoGoals, setPlayerTwoGoals] = useState<number>(0);
     const [series, setSeries] = useState<Series | null>(initialSeries);
     const [isExistingSeriesDialogOpen, setIsExistingSeriesDialogOpen] =
-        useState<boolean>((initialSeries?.matches.length ?? 0) > 0);
+        useState<boolean>(() => {
+            if (action) return false;
+
+            return (initialSeries?.matches.length ?? 0) > 0;
+        });
 
     const newMatchRef = useRef<HTMLDivElement | null>(null);
     const saveResultRef = useRef<HTMLDivElement | null>(null);
@@ -123,6 +130,24 @@ const useSeries = () => {
             setSeries(newSeries);
         }
     }, []);
+
+    useEffect(() => {
+        if (action === "continue") {
+            continueSeries();
+        }
+        if (action === "new") {
+            createNewSeries();
+        }
+    }, [action]);
+
+    useEffect(() => {
+        if (action) {
+            navigate(location.pathname, {
+                replace: true,
+                state: null,
+            });
+        }
+    }, [action, location.pathname, navigate]);
 
     const buttonLabel = isStopping
         ? "Останавливаем..."
