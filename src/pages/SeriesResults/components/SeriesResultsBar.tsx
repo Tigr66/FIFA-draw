@@ -22,10 +22,12 @@ const SeriesResultsBar = ({
 
     const { draws, playerOneWins, playerTwoWins } = winStatistics;
 
+    const totalMatches = draws + playerOneWins + playerTwoWins;
+
     const results = [
         {
             id: "playerOne",
-            label: `Победы: ${playerOneWins}`,
+            label: `Победы ${players.playerOne}: ${playerOneWins}`,
             percentage: playerOneWinPercentage,
             color: "success.main",
         },
@@ -37,7 +39,7 @@ const SeriesResultsBar = ({
         },
         {
             id: "playerTwo",
-            label: `Победы: ${playerTwoWins}`,
+            label: `Победы ${players.playerTwo}: ${playerTwoWins}`,
             percentage: playerTwoWinPercentage,
             color: "primary.main",
         },
@@ -45,7 +47,19 @@ const SeriesResultsBar = ({
 
     return (
         <CardWrapper
-            title="Результаты серии"
+            title={
+                <>
+                    Результаты серии
+                    <Typography
+                        component="span"
+                        variant="body1"
+                        color="text.secondary"
+                        sx={{ ml: 1 }}
+                    >
+                        ({totalMatches} матчей)
+                    </Typography>
+                </>
+            }
             sx={{
                 p: 2,
             }}
