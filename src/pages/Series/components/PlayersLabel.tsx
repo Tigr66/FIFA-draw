@@ -15,8 +15,6 @@ const PlayersLabel = ({
             sx={{
                 justifyContent: "space-around",
                 alignItems: "center",
-                width: "90%",
-                maxWidth: 1440,
                 my: 1,
                 mx: "auto",
                 position: "sticky",

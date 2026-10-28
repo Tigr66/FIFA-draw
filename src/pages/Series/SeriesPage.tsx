@@ -1,6 +1,6 @@
 import { Header } from "@/components/Header";
 import { PageWrapper } from "@/components/PageWrapper";
-import { Box, IconButton, Stack, Tooltip } from "@mui/material";
+import { Box, Container, IconButton, Stack, Tooltip } from "@mui/material";
 import {
     ExistingSeriesDialog,
     MatchResult,
@@ -50,108 +50,109 @@ const SeriesPage = () => {
                     pb: { xs: 3, sm: 4, md: 5 },
                 }}
             >
-                {series && (
-                    <ExistingSeriesDialog
-                        onContinue={continueSeries}
-                        onNewSeries={createNewSeries}
-                        series={series}
-                        open={isExistingSeriesDialogOpen}
-                        onBack={goToHomePage}
-                    />
-                )}
-
-                <PlayersLabel
-                    playerOneName={series?.playerOne}
-                    playerTwoName={series?.playerTwo}
-                />
-                <Stack
-                    spacing={2}
-                    sx={{
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }}
-                >
-                    {series?.matches.map((match, index) => (
-                        <MatchResult
-                            key={`${index}-${match.playerOne.teamId}-${match.playerTwo.teamId}`}
-                            playerOne={match.playerOne}
-                            playerTwo={match.playerTwo}
+                <Container maxWidth="lg">
+                    {series && (
+                        <ExistingSeriesDialog
+                            onContinue={continueSeries}
+                            onNewSeries={createNewSeries}
+                            series={series}
+                            open={isExistingSeriesDialogOpen}
+                            onBack={goToHomePage}
                         />
-                    ))}
-                </Stack>
+                    )}
 
-                {showNewMatch && (
-                    <Box
+                    <PlayersLabel
+                        playerOneName={series?.playerOne}
+                        playerTwoName={series?.playerTwo}
+                    />
+                    <Stack
+                        spacing={2}
                         sx={{
-                            width: "90%",
-                            mt: 2,
-                            mx: "auto",
-                            pt: 5,
-                            px: {
-                                xs: 0,
-                                sm: 4,
-                            },
-                            position: "relative",
+                            justifyContent: "center",
+                            alignItems: "center",
                         }}
                     >
-                        {showCloseMatch && (
-                            <Tooltip
-                                placement="top"
-                                title="Отменить новый матч"
-                            >
-                                <IconButton
-                                    aria-label="Отменить новый матч"
-                                    onClick={closeNewMatch}
-                                    sx={{
-                                        position: "absolute",
-                                        top: 0,
-                                        right: 0,
-                                    }}
-                                >
-                                    <CloseIcon />
-                                </IconButton>
-                            </Tooltip>
-                        )}
-
-                        <NewMatch
-                            hasResult={hasResult}
-                            isRolling={isRolling}
-                            onSpin={autoSpining}
-                            phase={phase}
-                            teamPair={teamPair}
-                            newMatchRef={newMatchRef}
-                            buttonLabel={buttonLabel}
-                            players={{
-                                playerOne: series?.playerOne,
-                                playerTwo: series?.playerTwo,
-                            }}
-                        />
-
-                        {hasResult && (
-                            <MatchScoreForm
-                                playerOne={{
-                                    name: series?.playerOne,
-                                    goals: playerOneGoals,
-                                    setScore: setPlayerOneGoals,
-                                }}
-                                playerTwo={{
-                                    name: series?.playerTwo,
-                                    goals: playerTwoGoals,
-                                    setScore: setPlayerTwoGoals,
-                                }}
-                                saveResultRef={saveResultRef}
-                                onSave={saveResult}
+                        {series?.matches.map((match, index) => (
+                            <MatchResult
+                                key={`${index}-${match.playerOne.teamId}-${match.playerTwo.teamId}`}
+                                playerOne={match.playerOne}
+                                playerTwo={match.playerTwo}
                             />
-                        )}
-                    </Box>
-                )}
+                        ))}
+                    </Stack>
 
-                {!showNewMatch && (
-                    <SeriesActions
-                        onAddMatch={addNewMatch}
-                        onFinishSeries={finishSeries}
-                    />
-                )}
+                    {showNewMatch && (
+                        <Box
+                            sx={{
+                                mt: 2,
+                                mx: "auto",
+                                pt: 5,
+                                px: {
+                                    xs: 0,
+                                    sm: 4,
+                                },
+                                position: "relative",
+                            }}
+                        >
+                            {showCloseMatch && (
+                                <Tooltip
+                                    placement="top"
+                                    title="Отменить новый матч"
+                                >
+                                    <IconButton
+                                        aria-label="Отменить новый матч"
+                                        onClick={closeNewMatch}
+                                        sx={{
+                                            position: "absolute",
+                                            top: 0,
+                                            right: 0,
+                                        }}
+                                    >
+                                        <CloseIcon />
+                                    </IconButton>
+                                </Tooltip>
+                            )}
+
+                            <NewMatch
+                                hasResult={hasResult}
+                                isRolling={isRolling}
+                                onSpin={autoSpining}
+                                phase={phase}
+                                teamPair={teamPair}
+                                newMatchRef={newMatchRef}
+                                buttonLabel={buttonLabel}
+                                players={{
+                                    playerOne: series?.playerOne,
+                                    playerTwo: series?.playerTwo,
+                                }}
+                            />
+
+                            {hasResult && (
+                                <MatchScoreForm
+                                    playerOne={{
+                                        name: series?.playerOne,
+                                        goals: playerOneGoals,
+                                        setScore: setPlayerOneGoals,
+                                    }}
+                                    playerTwo={{
+                                        name: series?.playerTwo,
+                                        goals: playerTwoGoals,
+                                        setScore: setPlayerTwoGoals,
+                                    }}
+                                    saveResultRef={saveResultRef}
+                                    onSave={saveResult}
+                                />
+                            )}
+                        </Box>
+                    )}
+
+                    {!showNewMatch && (
+                        <SeriesActions
+                            onAddMatch={addNewMatch}
+                            onFinishSeries={finishSeries}
+                        />
+                    )}
+                </Container>
             </Box>
         </PageWrapper>
     );

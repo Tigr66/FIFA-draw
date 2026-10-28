@@ -20,8 +20,7 @@ const MatchResult = ({ playerOne, playerTwo }: MatchResultProps) => {
             className="slide-up"
             sx={{
                 p: { xs: 2.25, sm: 3 },
-                width: "90%",
-                maxWidth: 1440,
+                width: "100%",
             }}
         >
             <Box
