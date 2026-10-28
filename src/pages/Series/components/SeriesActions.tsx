@@ -1,5 +1,6 @@
+import { ActionsWrapper } from "@/components/ActionsWrapper";
 import { Add, Flag } from "@mui/icons-material";
-import { Button, Stack } from "@mui/material";
+import { Button } from "@mui/material";
 
 interface SeriesActionsProps {
     onAddMatch: () => void;
@@ -8,18 +9,7 @@ interface SeriesActionsProps {
 
 const SeriesActions = ({ onAddMatch, onFinishSeries }: SeriesActionsProps) => {
     return (
-        <Stack
-            className="slide-up"
-            spacing={{ xs: 1.5, sm: 2 }}
-            direction={{ xs: "column", sm: "row" }}
-            sx={{
-                justifyContent: "center",
-                mt: { xs: 3, sm: 4 },
-                width: "90%",
-                maxWidth: 1440,
-                mx: "auto",
-            }}
-        >
+        <ActionsWrapper>
             <Button
                 variant="outlined"
                 startIcon={<Add />}
@@ -45,7 +35,7 @@ const SeriesActions = ({ onAddMatch, onFinishSeries }: SeriesActionsProps) => {
             >
                 Завершить серию
             </Button>
-        </Stack>
+        </ActionsWrapper>
     );
 };
 
