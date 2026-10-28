@@ -4,7 +4,7 @@ import type { SxProps, Theme } from "@mui/material/styles";
 
 interface CardWrapperProps {
     children: ReactNode;
-    title?: string;
+    title?: string | ReactNode;
     sx?: SxProps<Theme>;
 }
 
