@@ -58,6 +58,7 @@ const ExistingSeriesDialog = ({
                 </Tooltip>
 
                 <Typography
+                    component={"span"}
                     variant="h6"
                     sx={{
                         fontWeight: 600,
