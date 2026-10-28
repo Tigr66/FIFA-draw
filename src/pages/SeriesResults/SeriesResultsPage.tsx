@@ -43,7 +43,26 @@ const SeriesResultsPage = () => {
                 )}
 
                 {hasCompletedSeries && (
-                    <Stack spacing={2}>
+                    <Stack
+                        spacing={2}
+                        sx={{
+                            "& > *": {
+                                animation: "slideUp 0.4s ease-out both",
+                            },
+                            "& > *:nth-of-type(1)": {
+                                animationDelay: "0s",
+                            },
+                            "& > *:nth-of-type(2)": {
+                                animationDelay: "0.15s",
+                            },
+                            "& > *:nth-of-type(3)": {
+                                animationDelay: "0.3s",
+                            },
+                            "& > *:nth-of-type(4)": {
+                                animationDelay: "0.45s",
+                            },
+                        }}
+                    >
                         <SeriesScoreCard
                             players={players}
                             goals={playerGoals}
