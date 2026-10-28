@@ -1,3 +1,4 @@
+import { SlideTransition } from "@/components/SlideTransition";
 import type { Series } from "@/types/series.types";
 import { ArrowBackRounded } from "@mui/icons-material";
 import {
@@ -31,7 +32,12 @@ const ExistingSeriesDialog = ({
     const isEnded: boolean = series.status === "ended";
 
     return (
-        <Dialog open={open}>
+        <Dialog
+            open={open}
+            slots={{
+                transition: SlideTransition,
+            }}
+        >
             <DialogTitle
                 sx={{
                     display: "flex",
