@@ -6,12 +6,16 @@ import type {
     Series,
     SeriesStatisticMatch,
     SeriesWinPercentages,
+    SeriesAction,
 } from "@/types/series.types";
 import { getTeamById } from "@/utils/get-team-by-id.util";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { appRoutes } from "@/routes/app-routes";
 
 const useSeriesResults = () => {
-    const { getSeries } = useSeriesStorage();
+    const navigate = useNavigate();
+    const { getSeries, updateSeriesStatus } = useSeriesStorage();
 
     const series: Series | null = getSeries();
 
@@ -115,6 +119,23 @@ const useSeriesResults = () => {
         }
     };
 
+    const createNewSeries = () => {
+        navigate(appRoutes.SERIES_PAGE, {
+            state: {
+                action: "new" as SeriesAction,
+            },
+        });
+    };
+
+    const continueSeries = () => {
+        updateSeriesStatus("in-progress");
+        navigate(appRoutes.SERIES_PAGE, {
+            state: {
+                action: "continue" as SeriesAction,
+            },
+        });
+    };
+
     useEffect(() => {
         calculateStatistics();
     }, []);
@@ -136,6 +157,8 @@ const useSeriesResults = () => {
         mostScoringMatch,
         biggestWinMatch,
         hasCompletedSeries,
+        createNewSeries,
+        continueSeries,
     };
 };
 

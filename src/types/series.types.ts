@@ -4,6 +4,8 @@ export type MatchStatus = "not-started" | "ended";
 
 export type SeriesStatus = "in-progress" | "ended";
 
+export type SeriesAction = "new" | "continue";
+
 export type MatchPlayer = {
     teamId: string;
     score: number;
