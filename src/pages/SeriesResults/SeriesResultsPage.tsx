@@ -5,6 +5,7 @@ import {
     SeriesResultsActions,
     SeriesResultsBar,
     SeriesScoreCard,
+    StatisticMatchCard,
 } from "./components";
 import useSeriesResults from "./hooks/useSeriesResults";
 
@@ -15,6 +16,8 @@ const SeriesResultsPage = () => {
         winPercentages,
         winStatistics,
         hasCompletedSeries,
+        biggestWinMatch,
+        mostScoringMatch,
         createNewSeries,
         resumeSeries,
     } = useSeriesResults();
@@ -40,11 +43,32 @@ const SeriesResultsPage = () => {
                 )}
 
                 {hasCompletedSeries && (
-                    <Stack spacing={1}>
+                    <Stack spacing={2}>
                         <SeriesScoreCard
                             players={players}
                             goals={playerGoals}
                         />
+                        <Stack
+                            spacing={2}
+                            direction={{
+                                xs: "column",
+                                md: "row",
+                            }}
+                            sx={{
+                                "& > *": {
+                                    flex: 1,
+                                },
+                            }}
+                        >
+                            <StatisticMatchCard
+                                title="Самый результативный матч"
+                                match={mostScoringMatch}
+                            />
+                            <StatisticMatchCard
+                                title="Самый крупный разгром"
+                                match={biggestWinMatch}
+                            />
+                        </Stack>
                         <SeriesResultsBar
                             players={players}
                             winPercentages={winPercentages}
