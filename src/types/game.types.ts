@@ -6,3 +6,8 @@ export type PlayerNames = {
     playerOne?: string;
     playerTwo?: string;
 };
+
+export type PlayerGoals = {
+    playerOne: number;
+    playerTwo: number;
+};

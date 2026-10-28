@@ -1,12 +1,17 @@
 import { Header } from "@/components/Header";
 import { PageWrapper } from "@/components/PageWrapper";
 import { Container, Stack, Typography } from "@mui/material";
-import { SeriesResultsActions, SeriesResultsBar } from "./components";
+import {
+    SeriesResultsActions,
+    SeriesResultsBar,
+    SeriesScoreCard,
+} from "./components";
 import useSeriesResults from "./hooks/useSeriesResults";
 
 const SeriesResultsPage = () => {
     const {
         players,
+        playerGoals,
         winPercentages,
         winStatistics,
         hasCompletedSeries,
@@ -36,6 +41,10 @@ const SeriesResultsPage = () => {
 
                 {hasCompletedSeries && (
                     <Stack spacing={1}>
+                        <SeriesScoreCard
+                            players={players}
+                            goals={playerGoals}
+                        />
                         <SeriesResultsBar
                             players={players}
                             winPercentages={winPercentages}
