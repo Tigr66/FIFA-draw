@@ -127,7 +127,7 @@ const useSeriesResults = () => {
         });
     };
 
-    const continueSeries = () => {
+    const resumeSeries = () => {
         updateSeriesStatus("in-progress");
         navigate(appRoutes.SERIES_PAGE, {
             state: {
@@ -158,7 +158,7 @@ const useSeriesResults = () => {
         biggestWinMatch,
         hasCompletedSeries,
         createNewSeries,
-        continueSeries,
+        resumeSeries,
     };
 };
 

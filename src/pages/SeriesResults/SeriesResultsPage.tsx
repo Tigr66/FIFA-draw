@@ -1,12 +1,18 @@
 import { Header } from "@/components/Header";
 import { PageWrapper } from "@/components/PageWrapper";
 import { Container, Stack, Typography } from "@mui/material";
-import { SeriesResultsBar } from "./components";
+import { SeriesResultsActions, SeriesResultsBar } from "./components";
 import useSeriesResults from "./hooks/useSeriesResults";
 
 const SeriesResultsPage = () => {
-    const { players, winPercentages, winStatistics, hasCompletedSeries } =
-        useSeriesResults();
+    const {
+        players,
+        winPercentages,
+        winStatistics,
+        hasCompletedSeries,
+        createNewSeries,
+        resumeSeries,
+    } = useSeriesResults();
 
     return (
         <PageWrapper>
@@ -34,6 +40,10 @@ const SeriesResultsPage = () => {
                             players={players}
                             winPercentages={winPercentages}
                             winStatistics={winStatistics}
+                        />
+                        <SeriesResultsActions
+                            onNewSeries={createNewSeries}
+                            onResumeSeries={resumeSeries}
                         />
                     </Stack>
                 )}

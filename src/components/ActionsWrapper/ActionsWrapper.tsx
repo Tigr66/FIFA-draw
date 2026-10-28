@@ -14,7 +14,6 @@ const ActionsWrapper = ({ children }: ActionsWrapperProps) => {
             sx={{
                 justifyContent: "center",
                 mt: { xs: 3, sm: 4 },
-                width: "90%",
                 maxWidth: 1440,
                 mx: "auto",
             }}
