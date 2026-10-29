@@ -1,78 +1,64 @@
-# React + TypeScript + Vite
+# FIFA Draw
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## About
 
-Currently, two official plugins are available:
+FIFA Draw is a browser-based companion for choosing teams and organizing matches between two players. It provides a random-match mode that assigns each player a different team, a series mode for recording match scores and reviewing results, and a team browser grouped by country. Player names and the current series are saved in the browser so they can be used again later.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Live Demo
 
-## React Compiler
+[https://fifa-draw.vercel.app/](https://fifa-draw.vercel.app/)
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Tech Stack
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+- **React 19** — component-based user interface.
+- **TypeScript** — application logic and typed game, team, and series data.
+- **Vite** — development server and production build.
+- **React Router** — client-side navigation between application pages.
+- **Material UI** — interface components, theming, and icons.
+- **Base UI** — accessible number field used for match scores.
+- **Emotion** — styling engine used by Material UI.
+- **React Compiler** — enabled through the Babel plugin in the Vite configuration.
 
-## Expanding the ESLint configuration
+## Architecture
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- `src/pages/` contains the Home, RandomMatch, Series, SeriesResults, and Teams page modules. Page-specific components and hooks are colocated with their pages; reusable UI components are in `src/components/`.
+- UI components render the interface, while page hooks coordinate navigation and page behavior. `useHomePage` handles player setup and mode selection; `useRandomMatch` connects the random-match page to the roulette; `useSeries` manages series workflows and match entry; and `useSeriesResults` calculates and prepares series statistics.
+- Shared hooks in `src/hooks/` separate reusable logic: `useRoulette` handles team selection and spin phases, `usePlayersStorage` persists player names, and `useSeriesStorage` reads and writes series data.
+- React state is used for transient UI and game state. `localStorage` stores player names and one active or completed series; there is no server-side persistence.
+- `src/data/` holds the country and team catalog. `src/utils/` contains team-pair selection, team lookup, logo preloading, and win-percentage calculations. `src/types/` defines the TypeScript models used across these modules.
+- `src/routes/app-routes.ts` centralizes page paths, and `src/theme/` and `src/styles/` provide the Material UI theme and global styles.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Requirements
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js 20.19+ or 22.12+
+- npm
 
+### Setup
+
+```bash
+git clone https://github.com/Tigr66/FIFA-draw.git
+cd FIFA-draw
+npm ci
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Start the development server:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm run dev
 ```
+
+Create a production build:
+
+```bash
+npm run build
+```
+
+To serve the production build locally after building:
+
+```bash
+npm run preview
+```
+
+No environment variables are required.
